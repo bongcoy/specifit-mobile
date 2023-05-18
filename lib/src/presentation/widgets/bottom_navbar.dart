@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:specifit/src/presentation/screens/home_screen.dart';
 import 'package:specifit/src/presentation/screens/profile_screen.dart';
 import 'package:specifit/src/presentation/screens/workout_screen.dart';
@@ -26,6 +27,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
         backgroundColor: Colors.white,
         unselectedItemColor: const Color.fromARGB(255, 166, 166, 166),
         selectedItemColor: const Color.fromARGB(255, 255, 155, 5),
+        unselectedLabelStyle: GoogleFonts.openSans(
+          fontSize: 14,
+          color: const Color.fromARGB(255, 166, 166, 166),
+        ),
+        selectedLabelStyle: GoogleFonts.openSans(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          color: const Color.fromARGB(255, 255, 155, 5),
+        ),
         onTap: (int index) {
           setState(() {
             _currentIndex = index;
