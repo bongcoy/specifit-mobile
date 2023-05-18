@@ -17,7 +17,9 @@ class OnboardingContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Spacer(),
+        const SizedBox(
+          height: 120,
+        ),
         Image.asset(
           image,
           height: 280,
