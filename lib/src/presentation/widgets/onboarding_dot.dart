@@ -17,7 +17,7 @@ class OnboardingDot extends StatelessWidget {
       decoration: BoxDecoration(
         color: isActive
             ? const Color.fromARGB(255, 255, 155, 5)
-            : Color.fromARGB(255, 225, 225, 225),
+            : const Color.fromARGB(255, 225, 225, 225),
         borderRadius: const BorderRadius.all(
           Radius.circular(12),
         ),

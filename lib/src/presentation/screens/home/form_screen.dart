@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:specifit/src/presentation/screens/form_quiz.dart';
+import 'package:specifit/src/presentation/screens/home/form_quiz.dart';
 
 class FormScreen extends StatelessWidget {
   const FormScreen({super.key});

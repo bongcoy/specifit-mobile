@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:specifit/src/presentation/screens/form_screen.dart';
+import 'package:specifit/src/presentation/screens/home/form_screen.dart';
 
 class FormCard extends StatelessWidget {
   const FormCard({
@@ -53,7 +53,7 @@ class FormCard extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (ctx) => FormScreen(),
+                            builder: (ctx) => const FormScreen(),
                           ),
                         );
                       },

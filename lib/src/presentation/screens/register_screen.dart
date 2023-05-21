@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:specifit/src/presentation/screens/login_screen.dart';
-import 'login_screen.dart';
 import 'package:specifit/src/presentation/widgets/bottom_navbar.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -36,8 +35,8 @@ class RegisterScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // Login form components (e.g., TextFields, Buttons) go here
-                    Text("Daftar",style: TextStyle(fontSize: 20)),
-                    TextField(
+                    const Text("Daftar",style: TextStyle(fontSize: 20)),
+                    const TextField(
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.man),
                         hintText: 'Nama',
@@ -46,8 +45,8 @@ class RegisterScreen extends StatelessWidget {
                         filled: true,
                       ),
                     ),
-                    SizedBox(height: 10),
-                    TextField(
+                    const SizedBox(height: 10),
+                    const TextField(
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email),
                         hintText: 'Email',
@@ -56,7 +55,7 @@ class RegisterScreen extends StatelessWidget {
                         filled: true,
                       ),
                     ),
-                    TextField(
+                    const TextField(
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.phone),
                         hintText: 'Telepon',
@@ -65,8 +64,8 @@ class RegisterScreen extends StatelessWidget {
                         filled: true,
                       ),
                     ),
-                    SizedBox(height: 10),
-                    TextField(
+                    const SizedBox(height: 10),
+                    const TextField(
                       obscureText: true,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.lock),
@@ -76,13 +75,13 @@ class RegisterScreen extends StatelessWidget {
                         filled: true,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     ElevatedButton(
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (ctx) => BottomNavBar(),
+                            builder: (ctx) => const BottomNavBar(),
                           ),
                         );
                       },
@@ -105,25 +104,25 @@ class RegisterScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Container(
                 color: Colors.white,
-                padding: EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.only(bottom: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Sudah punya akun Specifit?',
                       style: TextStyle(fontSize: 16),
                     ),
-                    SizedBox(width: 4),
+                    const SizedBox(width: 4),
                     GestureDetector(
                       onTap: () {
                         Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                      builder: (ctx) => LoginScreen(),
+                      builder: (ctx) => const LoginScreen(),
                     ),
                   );
                       },
-                      child: Text(
+                      child: const Text(
                         'Masuk',
                         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 243, 152, 33)),
                       ),

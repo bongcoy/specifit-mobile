@@ -41,7 +41,7 @@ class OnboardingContent extends StatelessWidget {
           desc,
           textAlign: TextAlign.left,
           style: GoogleFonts.openSans(
-            color: Color.fromARGB(255, 107, 107, 107),
+            color: const Color.fromARGB(255, 107, 107, 107),
             fontSize: 16,
             fontWeight: FontWeight.normal,
           ),
