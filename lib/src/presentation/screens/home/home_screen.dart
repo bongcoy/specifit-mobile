@@ -3,10 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:specifit/src/presentation/widgets/category_button.dart';
-import 'package:specifit/src/presentation/widgets/form_card.dart';
+import 'package:specifit/src/presentation/widgets/cards/form_card.dart';
 import 'package:specifit/src/presentation/providers/userdata_provider.dart';
-import 'package:specifit/src/presentation/widgets/recommendation_card.dart';
 import 'package:specifit/src/presentation/widgets/recommendation_section.dart';
+
+import '../../widgets/cards/recommendation_card.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
