@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:specifit/src/presentation/screens/home_screen.dart';
 import 'package:specifit/src/presentation/providers/userdata_provider.dart';
-import 'package:specifit/src/domain/models/userdata.dart';
 
 class FormQuiz extends ConsumerStatefulWidget {
   final List<String> questions;
@@ -156,6 +155,7 @@ class _FormQuizState extends ConsumerState<FormQuiz> {
         'Halaman ${currentQuestionIndex + 1} dari ${widget.questions.length}';
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 249, 249, 249),
         foregroundColor: Colors.black,
@@ -267,7 +267,7 @@ class _FormQuizState extends ConsumerState<FormQuiz> {
               ),
               const Spacer(),
               Padding(
-                padding: const EdgeInsets.only(bottom: 100),
+                padding: const EdgeInsets.only(bottom: 80),
                 child: ElevatedButton(
                   onPressed: _nextQuestion,
                   style: ElevatedButton.styleFrom(
@@ -299,14 +299,16 @@ class _FormQuizState extends ConsumerState<FormQuiz> {
                 ),
               ),
               const SizedBox(height: 8.0),
-              Text(
-                progressText,
-                style: GoogleFonts.openSans(
-                  fontSize: 16,
-                  color: Colors.black,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 50),
+                child: Text(
+                  progressText,
+                  style: GoogleFonts.openSans(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-              const SizedBox(height: 48.0),
             ],
           ),
         ),

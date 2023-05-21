@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:specifit/src/presentation/widgets/category_button.dart';
 import 'package:specifit/src/presentation/widgets/form_card.dart';
 import 'package:specifit/src/presentation/providers/userdata_provider.dart';
+import 'package:specifit/src/presentation/widgets/recommendation_card.dart';
+import 'package:specifit/src/presentation/widgets/recommendation_section.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -12,6 +14,8 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentUserData = ref.watch(userDataProvider);
+    Widget StatusCard =
+        currentUserData.isFilled ? RecommendationSection() : const FormCard();
 
     // DEBUG
     debugPrint(currentUserData.toString()); // TODO: Filters based on UserData
@@ -40,7 +44,12 @@ class HomeScreen extends ConsumerWidget {
                 ),
               ],
             ),
-            const FormCard(),
+            StatusCard,
+            currentUserData.isFilled
+                ? RecommendationCard()
+                : const SizedBox(
+                    height: 0,
+                  ),
             Container(
               decoration: const BoxDecoration(
                 color: Colors.white,
