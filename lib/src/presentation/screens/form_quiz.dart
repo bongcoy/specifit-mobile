@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:specifit/src/presentation/screens/home_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class FormQuiz extends StatefulWidget {
+import 'package:specifit/src/presentation/screens/home_screen.dart';
+import 'package:specifit/src/presentation/providers/userdata_provider.dart';
+import 'package:specifit/src/domain/models/userdata.dart';
+
+class FormQuiz extends ConsumerStatefulWidget {
   final List<String> questions;
   final List<List<String>> options;
   final List<String> labels;
@@ -15,10 +19,10 @@ class FormQuiz extends StatefulWidget {
   });
 
   @override
-  _FormQuizState createState() => _FormQuizState();
+  ConsumerState<FormQuiz> createState() => _FormQuizState();
 }
 
-class _FormQuizState extends State<FormQuiz> {
+class _FormQuizState extends ConsumerState<FormQuiz> {
   int currentQuestionIndex = 0;
   int selectedIndex = -1;
   bool showError = false;
@@ -27,6 +31,9 @@ class _FormQuizState extends State<FormQuiz> {
   bool isValid = true;
 
   void _nextQuestion() {
+    final currentUserData = ref.watch(userDataProvider);
+    final userDataNotifier = ref.read(userDataProvider.notifier);
+
     setState(() {
       if (selectedIndex == -1 &&
           widget.options[currentQuestionIndex].isNotEmpty) {
@@ -37,10 +44,58 @@ class _FormQuizState extends State<FormQuiz> {
           textEditingController.text.isNotEmpty && isValid) {
         showError = false;
 
+        // Update provider data here
+        if (currentQuestionIndex == 0) {
+          // Change gender
+          final updatedUserData = currentUserData.copyWith(
+            gender: selectedIndex + 1,
+          );
+          userDataNotifier.updateUserData(updatedUserData);
+        } else if (currentQuestionIndex == 1) {
+          // Change age
+          final updatedUserData = currentUserData.copyWith(
+            age: int.parse(userInput!),
+          );
+          userDataNotifier.updateUserData(updatedUserData);
+        } else if (currentQuestionIndex == 2) {
+          // Change height
+          final updatedUserData = currentUserData.copyWith(
+            height: int.parse(userInput!),
+          );
+          userDataNotifier.updateUserData(updatedUserData);
+        } else if (currentQuestionIndex == 3) {
+          // Change weight
+          final updatedUserData = currentUserData.copyWith(
+            weight: int.parse(userInput!),
+          );
+          userDataNotifier.updateUserData(updatedUserData);
+        } else if (currentQuestionIndex == 4) {
+          // Change activity
+          final updatedUserData = currentUserData.copyWith(
+            activity: selectedIndex + 1,
+          );
+          userDataNotifier.updateUserData(updatedUserData);
+        } else if (currentQuestionIndex == 5) {
+          // Change medicalCondition
+          final updatedUserData = currentUserData.copyWith(
+            medicalCondition: selectedIndex + 1,
+            isFilled: true,
+          );
+          userDataNotifier.updateUserData(updatedUserData);
+        }
+
         if (currentQuestionIndex < widget.questions.length - 1) {
           currentQuestionIndex++;
           selectedIndex = -1; // Reset selected index for the next question
+          textEditingController.clear(); // Reset text input
         } else {
+          debugPrint(currentUserData.toString()); // DEBUG
+
+          // Calculation Here
+          userDataNotifier.calculateIMT();
+          userDataNotifier.calculateCalPerDay();
+          userDataNotifier.calculateRecommendation();
+
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -63,13 +118,13 @@ class _FormQuizState extends State<FormQuiz> {
         isValid = false;
       }
     } else if (currentQuestionIndex == 2) {
-      int weight = int.tryParse(inputValue) ?? -1;
-      if (weight < 30 || weight > 300 || weight == -1) {
+      int height = int.tryParse(inputValue) ?? -1;
+      if (height < 100 || height > 250 || height == -1) {
         isValid = false;
       }
     } else if (currentQuestionIndex == 3) {
-      int height = int.tryParse(inputValue) ?? -1;
-      if (height < 100 || height > 250 || height == -1) {
+      int weight = int.tryParse(inputValue) ?? -1;
+      if (weight < 30 || weight > 300 || weight == -1) {
         isValid = false;
       }
     }
@@ -94,6 +149,11 @@ class _FormQuizState extends State<FormQuiz> {
   Widget build(BuildContext context) {
     String currentQuestion = widget.questions[currentQuestionIndex];
     List<String> currentOptions = widget.options[currentQuestionIndex];
+
+    final progressPercentage =
+        (currentQuestionIndex + 1) / widget.questions.length;
+    final progressText =
+        'Halaman ${currentQuestionIndex + 1} dari ${widget.questions.length}';
 
     return Scaffold(
       appBar: AppBar(
@@ -188,7 +248,9 @@ class _FormQuizState extends State<FormQuiz> {
                     );
                   }),
                 ),
-              const Spacer(),
+              const SizedBox(
+                height: 16,
+              ),
               Visibility(
                 visible: showError,
                 child: const Padding(
@@ -203,6 +265,7 @@ class _FormQuizState extends State<FormQuiz> {
                   ),
                 ),
               ),
+              const Spacer(),
               Padding(
                 padding: const EdgeInsets.only(bottom: 100),
                 child: ElevatedButton(
@@ -221,6 +284,29 @@ class _FormQuizState extends State<FormQuiz> {
                   ),
                 ),
               ),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 50),
+                height: 14.0,
+                child: ClipRRect(
+                  borderRadius:
+                      BorderRadius.circular(8.0), // Set the border radius here
+                  child: LinearProgressIndicator(
+                    value: progressPercentage,
+                    backgroundColor: Colors.grey[200],
+                    valueColor:
+                        const AlwaysStoppedAnimation<Color>(Colors.orange),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8.0),
+              Text(
+                progressText,
+                style: GoogleFonts.openSans(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 48.0),
             ],
           ),
         ),

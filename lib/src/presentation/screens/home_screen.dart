@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:specifit/src/presentation/widgets/category_button.dart';
 import 'package:specifit/src/presentation/widgets/form_card.dart';
+import 'package:specifit/src/presentation/providers/userdata_provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentUserData = ref.watch(userDataProvider);
+
+    // DEBUG
+    debugPrint(currentUserData.toString()); // TODO: Filters based on UserData
+
     return SafeArea(
       child: Scaffold(
         body: ListView(
