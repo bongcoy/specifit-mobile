@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:specifit/src/presentation/screens/workout/workout_all_screen.dart';
 import 'package:specifit/src/presentation/widgets/search_box.dart';
 
 import '../../widgets/cards/workout_card.dart';
@@ -76,7 +77,14 @@ class WorkoutScreen extends StatelessWidget {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (ctx) => const WorkoutAllScreen(),
+                          ),
+                        );
+                      },
                       child: const Text(
                         'Lihat Semua',
                         style: TextStyle(
