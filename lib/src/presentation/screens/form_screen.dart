@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:specifit/src/presentation/screens/form_quiz.dart';
 
 class FormScreen extends StatelessWidget {
+  const FormScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
