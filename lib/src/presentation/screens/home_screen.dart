@@ -15,14 +15,14 @@ class HomeScreen extends StatelessWidget {
             Stack(
               children: [
                 Image.asset("assets/images/element_home.png"),
-                const Positioned(
+                Positioned(
                   left: 24,
                   top: 0,
                   bottom: 0,
                   child: Center(
                     child: Text(
                       "Halo, Name",
-                      style: TextStyle(
+                      style: GoogleFonts.openSans(
                         fontSize: 28,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
