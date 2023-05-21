@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:specifit/src/presentation/screens/login_screen.dart';
+import 'login_screen.dart';
 import 'package:specifit/src/presentation/widgets/bottom_navbar.dart';
-import 'register_screen.dart';
 
-
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
   
 
   @override
@@ -18,7 +18,7 @@ class LoginScreen extends StatelessWidget {
             Positioned(
               top: 1,
               right: 1,
-              child: Image.asset('assets/images/element_1.png')
+              child: Image.asset('assets/images/element_2.png')
             ),
             Positioned(
               top: 100,
@@ -36,12 +36,31 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // Login form components (e.g., TextFields, Buttons) go here
-                    Text("Masuk",style: TextStyle(fontSize: 20)),
+                    Text("Daftar",style: TextStyle(fontSize: 20)),
+                    TextField(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.man),
+                        hintText: 'Nama',
+                        hintStyle: TextStyle(color: Color.fromARGB(120, 0, 0, 0)),
+                        fillColor: Colors.white,
+                        filled: true,
+                      ),
+                    ),
+                    SizedBox(height: 10),
                     TextField(
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email),
-                        hintText: 'email',
-                        hintStyle: TextStyle(color: Color.fromARGB(131, 0, 0, 0)),
+                        hintText: 'Email',
+                        hintStyle: TextStyle(color: Color.fromARGB(120, 0, 0, 0)),
+                        fillColor: Colors.white,
+                        filled: true,
+                      ),
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.phone),
+                        hintText: 'Telepon',
+                        hintStyle: TextStyle(color: Color.fromARGB(120, 0, 0, 0)),
                         fillColor: Colors.white,
                         filled: true,
                       ),
@@ -74,7 +93,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       child: const Text(
-                        'Login',
+                        'Masuk',
                         style: TextStyle(color: Colors.white),
                         ),
                   ),
@@ -91,7 +110,7 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Belum punya akun Specifit?',
+                      'Sudah punya akun Specifit?',
                       style: TextStyle(fontSize: 16),
                     ),
                     SizedBox(width: 4),
@@ -100,12 +119,12 @@ class LoginScreen extends StatelessWidget {
                         Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                      builder: (ctx) => RegisterScreen(),
+                      builder: (ctx) => LoginScreen(),
                     ),
                   );
                       },
                       child: Text(
-                        'Daftar',
+                        'Masuk',
                         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 243, 152, 33)),
                       ),
                     ),
