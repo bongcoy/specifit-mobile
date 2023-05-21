@@ -1,5 +1,5 @@
 class Workout {
-  final String id;
+  final int id;
   final String image;
   final String title;
   final String workoutList;
