@@ -1,4 +1,4 @@
-import 'package:specifit/src/domain/models/recommendation.dart';
+import '../../domain/models/recommendation.dart';
 
 class UserData {
   int activity;
@@ -83,4 +83,3 @@ class UserData {
         'medicalCondition: $medicalCondition, recommendation: $recommendation, weight: $weight)';
   }
 }
-

@@ -32,7 +32,7 @@ class CategoryButton extends StatelessWidget {
                   child: Icon(
                     icon,
                     size: 28,
-                    color: Color.fromARGB(255, 255, 129, 13),
+                    color: const Color.fromARGB(255, 255, 129, 13),
                   ),
                 ),
               ),

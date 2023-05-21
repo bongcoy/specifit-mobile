@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StatusCard extends StatelessWidget {
-  StatusCard({
+  const StatusCard({
     super.key,
     required this.title,
     required this.desc,
@@ -39,7 +39,7 @@ class StatusCard extends StatelessWidget {
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.3),
                       blurRadius: 4,
-                      offset: Offset(0, 2),
+                      offset: const Offset(0, 2),
                     ),
                   ],
                 ),

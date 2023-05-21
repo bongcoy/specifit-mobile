@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:specifit/src/presentation/screens/home_screen.dart';
+import 'package:specifit/src/presentation/screens/home/home_screen.dart';
 import 'package:specifit/src/presentation/providers/userdata_provider.dart';
 
 class FormQuiz extends ConsumerStatefulWidget {
@@ -207,7 +207,7 @@ class _FormQuizState extends ConsumerState<FormQuiz> {
                       const SizedBox(width: 8.0),
                       Text(
                         widget.labels[currentQuestionIndex],
-                        style: TextStyle(fontSize: 16),
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
@@ -228,19 +228,19 @@ class _FormQuizState extends ConsumerState<FormQuiz> {
                           border: Border.all(
                             color: selectedIndex == index
                                 ? Colors.orange
-                                : Color.fromARGB(255, 169, 168, 168),
+                                : const Color.fromARGB(255, 169, 168, 168),
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        padding: EdgeInsets.all(16.0),
-                        margin: EdgeInsets.only(bottom: 10.0),
+                        padding: const EdgeInsets.all(16.0),
+                        margin: const EdgeInsets.only(bottom: 10.0),
                         child: Text(
                           currentOptions[index],
                           style: GoogleFonts.openSans(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 89, 88, 88),
+                            color: const Color.fromARGB(255, 89, 88, 88),
                           ),
                           textAlign: TextAlign.center,
                         ),
