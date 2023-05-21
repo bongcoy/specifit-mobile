@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:specifit/src/presentation/screens/login_screen.dart';
+import 'package:specifit/src/presentation/screens/front/login_screen.dart';
 
 import 'package:specifit/src/presentation/widgets/onboarding_content.dart';
 import 'package:specifit/src/data/onboarding_data.dart';

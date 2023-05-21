@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:specifit/src/presentation/screens/home/home_screen.dart';
-import 'package:specifit/src/presentation/screens/profile_screen.dart';
-import 'package:specifit/src/presentation/screens/workout_screen.dart';
+import 'package:specifit/src/presentation/screens/profile/profile_screen.dart';
+import 'package:specifit/src/presentation/screens/workout/workout_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});

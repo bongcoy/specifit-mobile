@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:specifit/src/presentation/screens/onboarding_screen.dart';
+import 'package:specifit/src/presentation/screens/front/onboarding_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -30,6 +30,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       home: const OnboardingScreen(),
       theme: theme,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
