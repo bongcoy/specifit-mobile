@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:specifit/src/presentation/widgets/search_box.dart';
 
-import '../../widgets/workout_card.dart';
+import '../../widgets/cards/workout_card.dart';
 
 class WorkoutScreen extends StatelessWidget {
   const WorkoutScreen({super.key});
