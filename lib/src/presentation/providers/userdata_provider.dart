@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:specifit/src/domain/models/userdata.dart';
 
+import '../../domain/models/recommendation.dart';
+
 class UserDataNotifier extends StateNotifier<UserData> {
   UserDataNotifier() : super(UserData.initial());
 
