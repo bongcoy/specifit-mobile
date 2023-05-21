@@ -37,7 +37,7 @@ class WorkoutScreen extends StatelessWidget {
               ),
                 child: Stack(
                   children: [
-                    Align(
+                    const Align(
                       alignment: AlignmentDirectional(0, 0),
                       child: Padding(
                         padding:
@@ -54,17 +54,17 @@ class WorkoutScreen extends StatelessWidget {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0, 0),
+                      alignment: const AlignmentDirectional(0, 0),
                       child: Container(
                         width: 360,
                         height: 152,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xFFFF810D),
                         ),
                         child: Stack(
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(-1.1, 1.79),
+                              alignment: const AlignmentDirectional(-1.1, 1.79),
                               child: Image.asset(
                                 'assets/images/element_workout_2.png',
                                 width: 91,
@@ -73,7 +73,7 @@ class WorkoutScreen extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   142.5, 41.21, 0, 1.14),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
@@ -85,7 +85,7 @@ class WorkoutScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Align(
+                            const Align(
                               alignment: AlignmentDirectional(0, 0),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
@@ -116,10 +116,10 @@ class WorkoutScreen extends StatelessWidget {
                     Container(
                       width: 100,
                       height: 43,
-                      decoration: BoxDecoration(),
+                      decoration: const BoxDecoration(),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        children: [
+                        children: const [
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 15, 0, 0),
@@ -148,7 +148,7 @@ class WorkoutScreen extends StatelessWidget {
                     ),
                     Container(
                       width: double.infinity,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(0),
                           bottomRight: Radius.circular(0),
@@ -163,19 +163,19 @@ class WorkoutScreen extends StatelessWidget {
                           children: [
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                               child: Container(
                                 width: 50,
                                 height: 4,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFFF1F4F8),
+                                  color: const Color(0xFFF1F4F8),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                               ),
                             ),
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 32),
+                                  const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 32),
                               child: ListView(
                                 padding: EdgeInsets.zero,
                                 primary: false,
@@ -203,12 +203,12 @@ Padding(
                                             width: 2,
                                           ),
                                         ),
-                                        child: Container(
+                                        child: SizedBox(
                                           width: 328,
                                           height: 88,
                                           child: Stack(
                                             children: [
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -1.99, 0),
                                                 child: Padding(
@@ -228,7 +228,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -0.15, 0),
                                                 child: Padding(
@@ -246,7 +246,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -1.43, 0),
                                                 child: Padding(
@@ -265,7 +265,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -0.15, 0),
                                                 child: Padding(
@@ -283,7 +283,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -0.15, 0),
                                                 child: Padding(
@@ -302,7 +302,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -0.36, 0.64),
                                                 child: Icon(
@@ -357,12 +357,12 @@ Padding(
                                             width: 2,
                                           ),
                                         ),
-                                        child: Container(
+                                        child: SizedBox(
                                           width: 328,
                                           height: 88,
                                           child: Stack(
                                             children: [
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -1.99, 0),
                                                 child: Padding(
@@ -382,7 +382,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -0.15, 0),
                                                 child: Padding(
@@ -400,7 +400,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -1.43, 0),
                                                 child: Padding(
@@ -419,7 +419,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -0.15, 0),
                                                 child: Padding(
@@ -437,7 +437,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -0.15, 0),
                                                 child: Padding(
@@ -456,7 +456,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -0.36, 0.64),
                                                 child: Icon(
@@ -491,7 +491,7 @@ Padding(
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16, 12, 16, 0),
                                     child: Material(
                                       color: Colors.transparent,
@@ -511,12 +511,12 @@ Padding(
                                             width: 2,
                                           ),
                                         ),
-                                        child: Container(
+                                        child: SizedBox(
                                           width: 328,
                                           height: 88,
                                           child: Stack(
                                             children: [
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -1.99, 0),
                                                 child: Padding(
@@ -536,7 +536,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -0.15, 0),
                                                 child: Padding(
@@ -554,7 +554,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -1.43, 0),
                                                 child: Padding(
@@ -573,7 +573,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -0.15, 0),
                                                 child: Padding(
@@ -591,7 +591,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -0.15, 0),
                                                 child: Padding(
@@ -610,7 +610,7 @@ Padding(
                                                   ),
                                                 ),
                                               ),
-                                              Align(
+                                              const Align(
                                                 alignment: AlignmentDirectional(
                                                     -0.36, 0.64),
                                                 child: Icon(

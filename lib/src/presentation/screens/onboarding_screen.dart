@@ -40,7 +40,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               Expanded(
                 child: PageView.builder(
-                  itemCount: onboarding_data.length,
+                  itemCount: onboardingData.length,
                   controller: _pageController,
                   onPageChanged: (index) {
                     setState(() {
@@ -48,9 +48,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     });
                   },
                   itemBuilder: (context, index) => OnboardingContent(
-                    title: onboarding_data[index].title,
-                    image: onboarding_data[index].image,
-                    desc: onboarding_data[index].desc,
+                    title: onboardingData[index].title,
+                    image: onboardingData[index].image,
+                    desc: onboardingData[index].desc,
                   ),
                 ),
               ),
@@ -59,7 +59,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: Row(
                   children: [
                     ...List.generate(
-                      onboarding_data.length,
+                      onboardingData.length,
                       (index) => Padding(
                         padding: const EdgeInsets.only(right: 4),
                         child: OnboardingDot(

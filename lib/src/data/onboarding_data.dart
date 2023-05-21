@@ -1,6 +1,6 @@
 import 'package:specifit/src/domain/models/onboard.dart';
 
-final List<Onboard> onboarding_data = [
+final List<Onboard> onboardingData = [
   Onboard(
       image: "assets/images/on_boarding_1.png",
       title: "Program Olahraga Sesuai Kondisi",

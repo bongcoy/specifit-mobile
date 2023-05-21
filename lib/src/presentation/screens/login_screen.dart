@@ -36,8 +36,8 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // Login form components (e.g., TextFields, Buttons) go here
-                    Text("Masuk",style: TextStyle(fontSize: 20)),
-                    TextField(
+                    const Text("Masuk",style: TextStyle(fontSize: 20)),
+                    const TextField(
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email),
                         hintText: 'email',
@@ -46,8 +46,8 @@ class LoginScreen extends StatelessWidget {
                         filled: true,
                       ),
                     ),
-                    SizedBox(height: 10),
-                    TextField(
+                    const SizedBox(height: 10),
+                    const TextField(
                       obscureText: true,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.lock),
@@ -57,13 +57,13 @@ class LoginScreen extends StatelessWidget {
                         filled: true,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     ElevatedButton(
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (ctx) => BottomNavBar(),
+                            builder: (ctx) => const BottomNavBar(),
                           ),
                         );
                       },
@@ -86,25 +86,25 @@ class LoginScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Container(
                 color: Colors.white,
-                padding: EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.only(bottom: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Belum punya akun Specifit?',
                       style: TextStyle(fontSize: 16),
                     ),
-                    SizedBox(width: 4),
+                    const SizedBox(width: 4),
                     GestureDetector(
                       onTap: () {
                         Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                      builder: (ctx) => RegisterScreen(),
+                      builder: (ctx) => const RegisterScreen(),
                     ),
                   );
                       },
-                      child: Text(
+                      child: const Text(
                         'Daftar',
                         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 243, 152, 33)),
                       ),
