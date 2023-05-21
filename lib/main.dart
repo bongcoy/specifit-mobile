@@ -13,6 +13,7 @@ final theme = ThemeData(
 );
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
     home: const OnboardingScreen(),
     theme: theme,

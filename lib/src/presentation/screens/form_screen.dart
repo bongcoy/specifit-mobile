@@ -52,12 +52,28 @@ class FormScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (ctx) => const FormQuiz(
-                      question: "Jenis Kelamin",
-                      options: [
-                        "Laki-laki",
-                        "Perempuan",
+                      questions: [
+                        "Jenis Kelamin",
+                        "Umur",
+                        "Tinggi Badan",
+                        "Berat Badan",
+                        "Tingkat Aktivitas",
+                        "Punya Kondisi Medis?"
                       ],
-                      questionNum: 1,
+                      options: [
+                        ["Laki-laki", "Perempuan"],
+                        [],
+                        [],
+                        [],
+                        [
+                          "Kurang Aktif (Banyak Duduk)",
+                          "Aktivitas Rendah (Olahraga 1-2x seminggu)",
+                          "Aktivitas Sedang (Olahraga 3-5x seminggu)",
+                          "Aktivitas Tinggi (Olahraga 6-7x seminggu)",
+                        ],
+                        ["Punya", "Tidak Punya"],
+                      ],
+                      labels: ["", "tahun", "cm", "kg", "", ""],
                     ),
                   ),
                 );

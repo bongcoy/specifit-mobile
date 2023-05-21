@@ -69,7 +69,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     const Spacer(),
                     SizedBox(
-                      width: _pageIndex == 0 ? 60 : 120,
+                      width: _pageIndex == 0 ? 70 : 120,
                       height: 35,
                       child: _pageIndex == 0
                           ? TextButton(
