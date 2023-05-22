@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:specifit/src/presentation/screens/home/home_screen.dart';
+import 'package:specifit/src/presentation/widgets/bottom_navbar.dart';
 import 'package:specifit/src/presentation/providers/userdata_provider.dart';
 
 class FormQuiz extends ConsumerStatefulWidget {
@@ -97,7 +97,7 @@ class _FormQuizState extends ConsumerState<FormQuiz> {
 
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            MaterialPageRoute(builder: (context) => const BottomNavBar()),
           );
         }
       } else {
@@ -202,6 +202,7 @@ class _FormQuizState extends ConsumerState<FormQuiz> {
                           onChanged: (value) {
                             _validateInput(value);
                           },
+                          keyboardType: TextInputType.number,
                         ),
                       ),
                       const SizedBox(width: 8.0),
