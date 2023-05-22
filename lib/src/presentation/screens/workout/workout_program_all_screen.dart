@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:specifit/src/presentation/themes.dart';
-import 'package:specifit/src/presentation/widgets/buttons/filter_button.dart';
-import 'package:specifit/src/presentation/widgets/cards/workout_card.dart';
-import 'package:specifit/src/presentation/widgets/search_box.dart';
+import 'package:specifit/src/presentation/widgets/cards/workout_program_item_card.dart';
 
-class WorkoutAllScreen extends StatelessWidget {
-  const WorkoutAllScreen({Key? key}) : super(key: key);
+import '../../themes.dart';
+import '../../widgets/buttons/filter_button.dart';
+import '../../widgets/search_box.dart';
+
+class WorkoutProgramAllScreen extends StatelessWidget {
+  const WorkoutProgramAllScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +34,26 @@ class WorkoutAllScreen extends StatelessWidget {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Filter Olahraga"),
-                              const Text("Kategori"),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text("Filter Program"),
+                                  TextButton(
+                                    onPressed: () {
+                                      // Reset Filter
+                                    },
+                                    child: const Text("Reset Filter"),
+                                  )
+                                ],
+                              ),
+                              const Text("Goals"),
                               const FilterButton(),
-                              const Text("Kategori"),
+                              const Text("Status Indeks Massa Tubuh"),
+                              const FilterButton(),
+                              const Text("Punya Kondisi Medis"),
+                              const Text("Lainnya"),
+                              const FilterButton(),
+                              const Text("Waktu"),
                               const FilterButton(),
                               ElevatedButton(
                                 onPressed: () {
@@ -60,7 +77,7 @@ class WorkoutAllScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 3,
                 itemBuilder: (ctx, idx) {
-                  return const WorkoutCard(
+                  return const WorkoutProgramItemCard(
                       // workout: workoutList[idx],
                       );
                 },
