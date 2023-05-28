@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class WorkoutCard extends StatelessWidget {
   // final Workout workout;
@@ -9,128 +10,61 @@ class WorkoutCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-      child: Material(
-        color: Colors.transparent,
-        elevation: 1,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Container(
-          width: 328,
-          height: 88,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: Colors.white,
-              width: 2,
+    const String title = "Biceps by Rapli";
+    const String imageUrl = "assets/images/workout_2.png";
+    const String desc = "Biceps";
+    const String time = "15";
+    const String nWorkout = "4";
+    return Card(
+      elevation: 4,
+      color: Colors.white,
+      surfaceTintColor: Colors.white,
+      margin: const EdgeInsets.only(bottom: 12),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Row(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.20,
+              height: MediaQuery.of(context).size.width * 0.20,
+              child: Image.asset(
+                imageUrl,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          child: SizedBox(
-            width: 328,
-            height: 88,
-            child: Stack(
+            const SizedBox(
+              width: 16,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Align(
-                  alignment: AlignmentDirectional(-1.99, 0),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(137, 8, 18, 55),
-                    child: Text(
-                      'Auto Sixpath by Rapli',
-                      style: TextStyle(
-                        fontFamily: 'Open Sans',
-                        color: Color(0xFF14181B),
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(title),
+                    Text(desc),
+                  ],
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Wrap(
+                  direction: Axis.horizontal,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  spacing: 8,
+                  children: [
+                    const Icon(
+                      Icons.watch_later_outlined,
+                      color: Colors.black,
                     ),
-                  ),
-                ),
-                const Align(
-                  alignment: AlignmentDirectional(-0.15, 0),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(50, 55, 0, 15),
-                    child: Text(
-                      '.',
-                      style: TextStyle(
-                        fontFamily: 'Open Sans',
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                const Align(
-                  alignment: AlignmentDirectional(-1.43, 0),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(130, 23, 129, 35),
-                    child: Text(
-                      'Abs',
-                      style: TextStyle(
-                        fontFamily: 'Open Sans',
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                  ),
-                ),
-                const Align(
-                  alignment: AlignmentDirectional(-0.15, 0),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(110, 55, 0, 15),
-                    child: Text(
-                      '4 Olahraga',
-                      style: TextStyle(
-                        fontFamily: 'Open Sans',
-                        fontSize: 12,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ),
-                ),
-                const Align(
-                  alignment: AlignmentDirectional(-0.15, 0),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(110, 55, 160, 15),
-                    child: Text(
-                      '15 Menit',
-                      style: TextStyle(
-                        fontFamily: 'Open Sans',
-                        fontSize: 12,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ),
-                ),
-                const Align(
-                  alignment: AlignmentDirectional(-0.36, 0.64),
-                  child: Icon(
-                    Icons.watch_later_outlined,
-                    color: Colors.black,
-                    size: 16,
-                  ),
-                ),
-                Align(
-                  alignment: const AlignmentDirectional(0, 0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(11, 8, 277, 8),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        'assets/images/element_workout_abs.png',
-                        width: 79,
-                        height: 79,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
+                    const Text("$time Menit"),
+                    SvgPicture.asset("assets/vectors/ellipse105.svg"),
+                    const Text("$nWorkout olahraga"),
+                  ],
+                )
               ],
             ),
-          ),
+          ],
         ),
       ),
     );

@@ -13,6 +13,7 @@ class SearchBox extends StatelessWidget {
         hintText: 'Cari olahraga...',
         hintStyle: const TextStyle(color: greyColor),
         prefixIcon: const Icon(Icons.search, color: greyColor,),
+        contentPadding: const EdgeInsets.all(4.0),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: const BorderSide(color: greyColor)
