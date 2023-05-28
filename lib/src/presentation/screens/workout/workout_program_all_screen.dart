@@ -13,7 +13,7 @@ class WorkoutProgramAllScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: backgroundScreenColor,
-        iconTheme: const IconThemeData(color: greyDarkColor),
+        iconTheme: const IconThemeData(color: grey3Color),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -35,7 +35,8 @@ class WorkoutProgramAllScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   const Text("Filter Program"),
                                   TextButton(
@@ -46,21 +47,32 @@ class WorkoutProgramAllScreen extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              const Text("Goals"),
-                              const FilterButton(),
-                              const Text("Status Indeks Massa Tubuh"),
-                              const FilterButton(),
-                              const Text("Punya Kondisi Medis"),
-                              const Text("Lainnya"),
-                              const FilterButton(),
-                              const Text("Waktu"),
-                              const FilterButton(),
-                              ElevatedButton(
-                                onPressed: () {
-                                  // save filter
-                                },
-                                child: const Text("Simpan Filter"),
-                              )
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      const Text("Goals"),
+                                      const FilterButton(),
+                                      const Text("Status Indeks Massa Tubuh"),
+                                      const FilterButton(),
+                                      const Text("Punya Kondisi Medis"),
+                                      const Text("Lainnya"),
+                                      const FilterButton(),
+                                      const Text("Waktu"),
+                                      const FilterButton(),
+                                      Center(
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            // save filter
+                                          },
+                                          child: const Text("Simpan Filter"),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ],
                           );
                         },
