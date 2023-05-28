@@ -12,7 +12,13 @@ class WorkoutProgramDetailItem extends StatelessWidget {
     const String time = "10 Menit";
     const String calories = "260";
     return GestureDetector(
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (ctx)=>WorkoutDetailScreen(titleWorkout: title, imageUrl: imageUrl),),),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (ctx) =>
+              WorkoutDetailScreen(titleWorkout: title, imageUrl: imageUrl),
+        ),
+      ),
       child: Card(
         color: Colors.white,
         surfaceTintColor: Colors.white,
@@ -28,15 +34,25 @@ class WorkoutProgramDetailItem extends StatelessWidget {
                   const SizedBox(height: 8),
                   Row(
                     children: const [
-                      Icon(Icons.watch_later_outlined, color: grey2Color,),
-                      SizedBox(width: 4,),
+                      Icon(
+                        Icons.watch_later_outlined,
+                        color: grey2Color,
+                      ),
+                      SizedBox(
+                        width: 4,
+                      ),
                       Text(time),
                     ],
                   ),
                   Row(
                     children: const [
-                      Icon(Icons.local_fire_department_outlined, color: grey2Color,),
-                      SizedBox(width: 4,),
+                      Icon(
+                        Icons.local_fire_department_outlined,
+                        color: grey2Color,
+                      ),
+                      SizedBox(
+                        width: 4,
+                      ),
                       Text("$calories Kalori dibakar (est.)"),
                     ],
                   ),
