@@ -11,12 +11,12 @@ class SearchBox extends StatelessWidget {
       controller: _searchController,
       decoration: InputDecoration(
         hintText: 'Cari olahraga...',
-        hintStyle: const TextStyle(color: greyColor),
-        prefixIcon: const Icon(Icons.search, color: greyColor,),
+        hintStyle: const TextStyle(color: grey1Color),
+        prefixIcon: const Icon(Icons.search, color: grey1Color,),
         contentPadding: const EdgeInsets.all(4.0),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
-          borderSide: const BorderSide(color: greyColor)
+          borderSide: const BorderSide(color: grey1Color)
         ),
       ),
       onChanged: (value) {

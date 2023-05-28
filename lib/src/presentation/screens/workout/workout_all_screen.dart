@@ -12,7 +12,7 @@ class WorkoutAllScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: backgroundScreenColor,
-        iconTheme: const IconThemeData(color: greyDarkColor),
+        iconTheme: const IconThemeData(color: grey3Color),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

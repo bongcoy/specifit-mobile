@@ -16,7 +16,7 @@ class WorkoutDetailItem extends StatelessWidget {
         title: const Text(title),
         subtitle: Row(
           children: const [
-            Icon(Icons.watch_later_outlined, color: greyColor,),
+            Icon(Icons.watch_later_outlined, color: grey1Color,),
             SizedBox(width: 8,),
             Text(time),
           ],

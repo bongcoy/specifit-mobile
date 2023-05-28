@@ -14,25 +14,31 @@ class _DayButtonState extends State<DayButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
+    return GestureDetector(
+      onTap: () {
         setState(() {
           isActive = !isActive;
         });
       },
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(
-          isActive ? orangeColor : Colors.white,
+      child: Card(
+        margin: const EdgeInsets.only(right: 16),
+        color: isActive ? orangeColor : Colors.white,
+        child: Column(
+          children: [
+            Text(
+              "Day",
+              style: TextStyle(
+                color: isActive ? Colors.white : Colors.black,
+              ),
+            ),
+            Text(
+              widget.nDay,
+              style: TextStyle(
+                color: isActive ? Colors.white : Colors.black,
+              ),
+            ),
+          ],
         ),
-        foregroundColor: MaterialStateProperty.all<Color>(
-          isActive ? Colors.white : orangeColor,
-        ),
-      ),
-      child: Column(
-        children: [
-          const Text("Day"),
-          Text(widget.nDay),
-        ],
       ),
     );
   }
