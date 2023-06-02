@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:specifit/src/presentation/screens/login_screen.dart';
+import 'package:specifit/src/presentation/screens/front/login_screen.dart';
 import 'package:specifit/src/presentation/widgets/bottom_navbar.dart';
 
 class RegisterScreen extends StatelessWidget {
