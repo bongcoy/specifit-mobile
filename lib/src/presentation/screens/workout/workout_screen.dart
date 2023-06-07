@@ -23,7 +23,7 @@ class WorkoutScreen extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  width: 360,
+                  width: MediaQuery.of(context).size.width,
                   height: 152,
                   decoration: const BoxDecoration(
                     color: Color(0xFFFF810D),
@@ -53,7 +53,8 @@ class WorkoutScreen extends StatelessWidget {
                         ),
                       ),
                       const Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(18, 69, 231, 50),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(18, 69, 231, 50),
                         child: Text(
                           'Olahraga',
                           style: TextStyle(
@@ -112,7 +113,7 @@ class WorkoutScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.24,
+                        height: MediaQuery.of(context).size.height * 0.28,
                         child: ListView.builder(
                           itemCount: 3,
                           itemBuilder: (ctx, idx) {
@@ -168,7 +169,7 @@ class WorkoutScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.24,
+                        height: MediaQuery.of(context).size.height * 0.32,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListView.builder(

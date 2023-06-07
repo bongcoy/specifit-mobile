@@ -39,13 +39,9 @@ class _ProgramTabBarState extends State<ProgramTabBar>
         Expanded(
           child: TabBarView(
             controller: _tabController,
-            children: [
-              Container(
-                // child: const ScheduleTabView(),
-              ),
-              Container(
-                // child: const RatingTabView(),
-              ),
+            children: const [
+              ScheduleTabView(),
+              RatingTabView(),
             ],
           ),
         ),

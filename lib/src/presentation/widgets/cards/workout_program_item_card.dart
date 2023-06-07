@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:specifit/src/presentation/screens/workout/workout_detail_screen.dart';
+import 'package:specifit/src/presentation/screens/workout/workout_program_detail_screen.dart';
 import 'package:specifit/src/presentation/themes.dart';
 
 class WorkoutProgramItemCard extends StatelessWidget {
@@ -18,7 +18,7 @@ class WorkoutProgramItemCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => WorkoutDetailScreen(
+            builder: (context) => WorkoutProgramDetailScreen(
               titleProgram: titleProgram,
               imageUrl: imageUrl,
             ),
