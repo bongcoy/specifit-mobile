@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './editprofile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -11,13 +12,14 @@ class ProfileScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Bagian 1: Judul Profil dan Gambar
+            const SizedBox(height: 20),
             Container(
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Padding(
-                    padding: EdgeInsets.only(bottom: 8),
+                    padding: EdgeInsets.only(top: 8),
                     child: Text(
                       'Profil',
                       style:
@@ -26,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const CircleAvatar(
                         radius: 60,
@@ -65,7 +67,8 @@ class ProfileScreen extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
                   alignment: Alignment.centerLeft,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
@@ -81,10 +84,16 @@ class ProfileScreen extends StatelessWidget {
                   child: TextButton.icon(
                     onPressed: () {
                       // Add the desired functionality when the button is pressed
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => const EditProfileScreen(),
+                        ),
+                      );
                     },
                     icon: const Icon(
                       Icons.edit,
-                      color: Colors.black,
+                      color: Colors.orange,
                     ),
                     label: const Text(
                       'Edit Profile',
@@ -105,7 +114,8 @@ class ProfileScreen extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
                   alignment: Alignment.centerLeft,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
@@ -124,7 +134,7 @@ class ProfileScreen extends StatelessWidget {
                     },
                     icon: const Icon(
                       Icons.history,
-                      color: Colors.black,
+                      color: Colors.orange,
                     ),
                     label: const Text(
                       'Riwayat Tersimpan',
@@ -145,7 +155,8 @@ class ProfileScreen extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
                   alignment: Alignment.centerLeft,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
@@ -164,7 +175,7 @@ class ProfileScreen extends StatelessWidget {
                     },
                     icon: const Icon(
                       Icons.archive_rounded,
-                      color: Colors.black,
+                      color: Colors.orange,
                     ),
                     label: const Text(
                       'Program Tersimpan',
@@ -175,7 +186,7 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 50),
+            const SizedBox(height: 150),
 
             // Bagian 3: Tombol Logout
             Container(
