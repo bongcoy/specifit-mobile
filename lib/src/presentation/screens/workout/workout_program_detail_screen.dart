@@ -53,30 +53,33 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8,),
-            Container(
-              color: Colors.white,
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.52,
               child: const ProgramTabBar(),
             ),
             const SizedBox(height: 8,),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Row(
-                      children: const [
-                        Icon(Icons.add),
-                        Text("Coba Program"),
-                      ],
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              color: Colors.white,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Row(
+                        children: const [
+                          Icon(Icons.add),
+                          Text("Coba Program"),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.bookmark),
-                ),
-              ],
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.bookmark),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

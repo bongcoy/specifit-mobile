@@ -1,5 +1,7 @@
 import 'package:specifit/src/domain/models/workout.dart';
 
-const List<Workout> workoutList = [
+class Dummy {
+  static List<Workout> workoutList = [
 
-];
+  ];
+}
