@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
-class WorkoutProgramFilterScreen extends StatefulWidget {
+import '../../widgets/buttons/filter_button.dart';
+import '../../widgets/buttons/medical_condition_checkbox.dart';
+
+class WorkoutPorgramFilterScreen extends StatefulWidget {
+  const WorkoutPorgramFilterScreen({Key? key}) : super(key: key);
+
+  @override
+  State<WorkoutPorgramFilterScreen> createState() => _WorkoutPorgramFilterScreenState();
+}
+
+class _WorkoutPorgramFilterScreenState extends State<WorkoutPorgramFilterScreen> {
+
   List<String> selectedGoals = [];
   List<String> selectedStatus = [];
   List<String> selectedRatings = [];
@@ -86,27 +97,27 @@ class WorkoutProgramFilterScreen extends StatefulWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           color: Colors.grey,
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             // Action when back button is pressed
           },
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                Text(
+                const Text(
                   'Filter Program',
                   style: TextStyle(
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(width: 100.0),
+                const SizedBox(width: 100.0),
                 TextButton(
                   onPressed: () {
                     setState(() {
@@ -118,7 +129,7 @@ class WorkoutProgramFilterScreen extends StatefulWidget {
                       selectedTimes.clear();
                     });
                   },
-                  child: Text(
+                  child: const Text(
                     'Reset Filter',
                     style: TextStyle(
                       fontSize: 18.0,
@@ -128,15 +139,15 @@ class WorkoutProgramFilterScreen extends StatefulWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10.0),
-            Text(
+            const SizedBox(height: 10.0),
+            const Text(
               'Goals',
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             Wrap(
               spacing: 10.0,
               children: [
@@ -152,7 +163,7 @@ class WorkoutProgramFilterScreen extends StatefulWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             Wrap(
               spacing: 10.0,
               children: [
@@ -168,7 +179,7 @@ class WorkoutProgramFilterScreen extends StatefulWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             Wrap(
               spacing: 10.0,
               children: [
@@ -184,12 +195,12 @@ class WorkoutProgramFilterScreen extends StatefulWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10.0),
-            Text(
+            const SizedBox(height: 10.0),
+            const Text(
               'Status Index Massa Tubuh',
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.normal),
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             Wrap(
               spacing: 10.0,
               children: [
@@ -210,15 +221,15 @@ class WorkoutProgramFilterScreen extends StatefulWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10.0),
-            Text(
+            const SizedBox(height: 10.0),
+            const Text(
               'Ratings',
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.normal,
               ),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Wrap(
               spacing: 8.0,
               children: [
@@ -234,19 +245,19 @@ class WorkoutProgramFilterScreen extends StatefulWidget {
                 ),
               ],
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Row(
               children: [
-                Text(
+                const Text(
                   'Punya Kondisi Medis',
                   style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                     width:
-                        175.0), // Menambahkan jarak horizontal antara teks dan checkbox
+                    175.0), // Menambahkan jarak horizontal antara teks dan checkbox
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -264,16 +275,15 @@ class WorkoutProgramFilterScreen extends StatefulWidget {
                 ),
               ],
             ),
-            SizedBox(height: 4.0),
-            SizedBox(height: 4.0),
-            Text(
+            const SizedBox(height: 8.0),
+            const Text(
               'Lainnya',
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.normal,
               ),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Wrap(
               spacing: 8.0,
               children: [
@@ -289,14 +299,14 @@ class WorkoutProgramFilterScreen extends StatefulWidget {
                 ),
               ],
             ),
-            Text(
+            const Text(
               'Waktu',
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.normal,
               ),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Wrap(
               spacing: 8.0,
               children: [
@@ -326,10 +336,10 @@ class WorkoutProgramFilterScreen extends StatefulWidget {
                     onPressed: () {},
                     style: ButtonStyle(
                       backgroundColor: MaterialStateColor.resolveWith(
-                        (states) => Colors.orange,
+                            (states) => Colors.orange,
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Simpan Filter',
                       style: TextStyle(
                         fontSize: 22.0,
@@ -339,7 +349,7 @@ class WorkoutProgramFilterScreen extends StatefulWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -347,58 +357,3 @@ class WorkoutProgramFilterScreen extends StatefulWidget {
   }
 }
 
-class FilterButton extends StatelessWidget {
-  final String label;
-  final VoidCallback onPressed;
-  final bool selected;
-
-  const FilterButton({
-    Key? key,
-    required this.label,
-    required this.onPressed,
-    this.selected = false,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ButtonStyle(
-        backgroundColor: MaterialStateColor.resolveWith((states) {
-          if (states.contains(MaterialState.pressed)) {
-            return Colors.orange;
-          }
-          return selected ? Colors.orange : Colors.grey;
-        }),
-      ),
-      child: Text(label, style: TextStyle(fontSize: 18.0)),
-    );
-  }
-}
-
-class MedicalConditionCheckbox extends StatelessWidget {
-  final String label;
-  final bool value;
-  final ValueChanged<bool?> onChanged;
-
-  const MedicalConditionCheckbox({
-    Key? key,
-    required this.label,
-    required this.value,
-    required this.onChanged,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Checkbox(
-          value: value,
-          onChanged: onChanged,
-        ),
-        Text(label),
-      ],
-    );
-  }
-}
