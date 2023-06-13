@@ -24,7 +24,10 @@ class FilterButton extends StatelessWidget {
           return selected ? Colors.orange : Colors.grey;
         }),
       ),
-      child: Text(label, style: TextStyle(fontSize: 18.0)),
+      child: Text(
+        label,
+        style: const TextStyle(fontSize: 18.0),
+      ),
     );
   }
 }

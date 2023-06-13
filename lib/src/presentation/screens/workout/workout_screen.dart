@@ -105,7 +105,7 @@ class WorkoutScreen extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.28,
                   child: ListView.builder(
-                    itemCount: 3,
+                    itemCount: 2,
                     itemBuilder: (ctx, idx) {
                       return const WorkoutCard();
                     },
@@ -149,7 +149,7 @@ class WorkoutScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListView.builder(
-                      itemCount: 3,
+                      itemCount: 2,
                       itemBuilder: (ctx, idx) {
                         return const WorkoutProgramItemCard();
                       },
