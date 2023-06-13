@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:specifit/src/presentation/screens/tips/tips_screen.dart';
+import 'package:specifit/src/presentation/widgets/cards/tips_card.dart';
 
 import 'package:specifit/src/presentation/widgets/category_button.dart';
 import 'package:specifit/src/presentation/widgets/cards/form_card.dart';
@@ -122,14 +124,15 @@ class HomeScreen extends ConsumerWidget {
             const SizedBox(
               height: 10,
             ),
+            // bagian TIPS
             Container(
               decoration: const BoxDecoration(
                 color: Colors.white,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'Tips untuk Kamu',
@@ -139,9 +142,107 @@ class HomeScreen extends ConsumerWidget {
                       ),
                       textAlign: TextAlign.left,
                     ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (ctx) => const TipsScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Lihat Semua',
+                        style: TextStyle(
+                          fontFamily: 'Open Sans',
+                          color: Color(0xFFFF810D),
+                          fontSize: 10,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
+            ),
+            const SizedBox(height: 8),
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    width: 50,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF1F4F8),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.32,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListView.builder(
+                        itemCount: 2,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (ctx, idx) {
+                          return const TipsCard();
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              // SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   child: Row(
+              //     children: [
+              //       Stack(
+              //         children: [
+              //           Container(
+              //             margin: const EdgeInsets.all(16),
+              //             child: Container(
+              //               decoration: BoxDecoration(
+              //                 borderRadius: BorderRadius.circular(12),
+              //               ),
+              //               height: 200,
+              //               width: 300,
+              //               child: ClipRRect(
+              //                 borderRadius: BorderRadius.circular(12),
+              //                 child: Image.asset(
+              //                   "assets/images/program_1.png",
+              //                   fit: BoxFit.cover,
+              //                 ),
+              //               ),
+              //             ),
+              //           ),
+              //           Positioned(
+              //             bottom: 15,
+              //             left: 15,
+              //             right: 15,
+              //             child: Container(
+              //               padding: EdgeInsets.symmetric(vertical: 8),
+              //               decoration: BoxDecoration(
+              //                 color: Colors.white,
+              //                 borderRadius: BorderRadius.only(
+              //                   bottomLeft: Radius.circular(12),
+              //                   bottomRight: Radius.circular(12),
+              //                 ),
+              //               ),
+              //               child: Text(
+              //                 "Kapan Waktu yang tepat untuk berolahraga",
+              //                 style: TextStyle(
+              //                   fontSize: 14,
+              //                   fontWeight: FontWeight.bold,
+              //                   color: Colors.black,
+              //                 ),
+              //                 textAlign: TextAlign.start,
+              //               ),
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ),
           ],
         ),
