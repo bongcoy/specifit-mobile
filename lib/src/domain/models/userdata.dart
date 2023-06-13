@@ -38,7 +38,7 @@ class UserData {
       gender: 0,
       height: 0,
       imt: 0,
-      imtStatus: "",
+      imtStatus: "Normal",
       isFilled: false,
       medicalCondition: 0,
       recommendation: Recommendation.initial(),

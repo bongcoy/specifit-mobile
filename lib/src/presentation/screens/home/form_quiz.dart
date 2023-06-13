@@ -100,7 +100,17 @@ class _FormQuizState extends ConsumerState<FormQuiz> {
           userDataNotifier.calculateRecommendation();
 
           // POST
-          postUserData(currentUserData);
+          /*
+          if (!currentUserData.isFilled) {
+            final updatedUserData = currentUserData.copyWith(
+              isFilled: true,
+            );
+            userDataNotifier.updateUserData(updatedUserData);
+            createUserData(currentUserData);
+          } else {
+            editUserData(currentUserData);
+          }
+          */
 
           Navigator.push(
             context,
@@ -114,7 +124,7 @@ class _FormQuizState extends ConsumerState<FormQuiz> {
     });
   }
 
-  Future<void> postUserData(UserData userdata) async {
+  Future<void> editUserData(UserData userdata) async {
     final currentAuthData = ref.watch(userAuthProvider);
     final headers = {
       'Authorization': 'Bearer ${currentAuthData.token}',
@@ -134,13 +144,83 @@ class _FormQuizState extends ConsumerState<FormQuiz> {
       'imtStatus': userdata.imtStatus,
       'isFilled': userdata.isFilled,
       'medicalCondition': userdata.medicalCondition,
-      'recommendation': userdata.recommendation.toJson(),
+      'recommendation': jsonEncode(userdata.recommendation.toJson()),
       'weight': userdata.weight,
     });
 
     try {
       final response = await http.post(
         Uri.parse('https://specifit.duckdns.org/api/userdata/edit'),
+        headers: headers,
+        body: body,
+      );
+
+      if (response.statusCode != 200) {
+        if (context.mounted) {
+          final errorData = json.decode(response.body);
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
+              title: Text(errorData['meta']['message']),
+              content: Text(errorData['data']['error']),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        }
+        return;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: Colors.white,
+          title: const Text('Error'),
+          content: Text('Error: $e'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
+  Future<void> createUserData(UserData userdata) async {
+    final currentAuthData = ref.watch(userAuthProvider);
+    final headers = {
+      'Authorization': 'Bearer ${currentAuthData.token}',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    };
+
+    final body = jsonEncode({
+      'activity': userdata.activity,
+      'age': userdata.age,
+      'calPerDayHold': userdata.calPerDayHold,
+      'calPerDayLose': userdata.calPerDayLose,
+      'dateOfBirth': '1988-05-20',
+      'gender': userdata.gender,
+      'height': userdata.height,
+      'imt': userdata.imt,
+      'imtStatus': userdata.imtStatus,
+      'isFilled': userdata.isFilled,
+      'medicalCondition': userdata.medicalCondition,
+      'recommendation': jsonEncode(userdata.recommendation.toJson()),
+      'weight': userdata.weight,
+    });
+
+    try {
+      final response = await http.post(
+        Uri.parse('https://specifit.duckdns.org/api/userdata'),
         headers: headers,
         body: body,
       );
@@ -270,7 +350,6 @@ class _FormQuizState extends ConsumerState<FormQuiz> {
                         child: TextFormField(
                           controller: textEditingController,
                           decoration: InputDecoration(
-                            hintText: 'Enter your answer',
                             errorText: showError ? 'Invalid input' : null,
                             contentPadding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
