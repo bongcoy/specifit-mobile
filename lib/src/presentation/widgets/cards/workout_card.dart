@@ -4,11 +4,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../screens/workout/workout_detail_screen.dart';
 
 class WorkoutCard extends StatelessWidget {
+  final String token =
+      "648848dbb71f94175508df2f|ycelgmppc6KNlI13lljTIUtNaYZt0BPkSNhRbOCu";
+  final String url = "https://specifit.duckdns.org/api/workout/image/";
   final String title;
   final String imageUrl;
   final String desc;
   final String time;
   final String nWorkout;
+  final List<dynamic> workoutList;
 
   const WorkoutCard({
     Key? key,
@@ -17,6 +21,7 @@ class WorkoutCard extends StatelessWidget {
     required this.desc,
     required this.time,
     required this.nWorkout,
+    required this.workoutList,
   }) : super(key: key);
 
   @override
@@ -26,8 +31,9 @@ class WorkoutCard extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (ctx) => WorkoutDetailScreen(
-            titleWorkout: title,
+            titleWorkout: workoutList,
             imageUrl: "assets/images/workout_2.png",
+            time: time,
           ),
         ),
       ),
@@ -41,13 +47,17 @@ class WorkoutCard extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.20,
-                height: MediaQuery.of(context).size.width * 0.20,
-                child: Image.asset(
-                  imageUrl,
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  width: MediaQuery.of(context).size.width * 0.20,
+                  height: MediaQuery.of(context).size.width * 0.20,
+                  child: Image.network(
+                    url + imageUrl,
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json',
+                      'Authorization': 'Bearer $token',
+                    },
+                    fit: BoxFit.cover,
+                  )),
               const SizedBox(
                 width: 16,
               ),
