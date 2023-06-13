@@ -68,12 +68,17 @@ class StatusCard extends StatelessWidget {
                           color: Colors.black87,
                         ),
                         textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 12),
                       Expanded(
                         child: Container(
                           width: double.infinity,
-                          padding: const EdgeInsets.all(8),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 0,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.grey.shade200,
                             borderRadius: BorderRadius.circular(8),
