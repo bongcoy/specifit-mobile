@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:specifit/src/presentation/screens/profile/programtersimpan_screen.dart';
-import 'package:specifit/src/presentation/screens/profile/riwayat_screen.dart';
-import 'editprofile_screen.dart';
+import 'package:specifit/src/presentation/screens/profile/editprofile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -34,8 +32,7 @@ class ProfileScreen extends StatelessWidget {
                     children: [
                       const CircleAvatar(
                         radius: 60,
-                        backgroundImage:
-                            AssetImage('assets/images/profile_image.jpg'),
+                        backgroundImage: AssetImage('assets/profile_image.jpg'),
                       ),
                       const SizedBox(width: 16),
                       Align(
@@ -133,12 +130,6 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   child: TextButton.icon(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (ctx) => const RiwayatProfileScreen(),
-                        ),
-                      );
                       // Add the desired functionality when the button is pressed
                     },
                     icon: const Icon(
@@ -181,12 +172,6 @@ class ProfileScreen extends StatelessWidget {
                   child: TextButton.icon(
                     onPressed: () {
                       // Add the desired functionality when the button is pressed
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (ctx) => const ProgramTersimpanScreen(),
-                        ),
-                      );
                     },
                     icon: const Icon(
                       Icons.archive_rounded,
