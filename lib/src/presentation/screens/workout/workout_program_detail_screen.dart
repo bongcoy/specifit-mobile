@@ -11,7 +11,6 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
     required this.titleProgram,
     required this.imageUrl,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     const String descProgram =
@@ -52,12 +51,13 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
-<<<<<<< HEAD
             const SizedBox(
               height: 8,
             ),
             Container(
               color: Colors.white,
+            const SizedBox(height: 8,),
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.52,
               child: const ProgramTabBar(),
             ),
@@ -74,11 +74,14 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
                         Icon(Icons.add),
                         Text("Coba Program"),
                       ],
-=======
-            const SizedBox(height: 8,),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.52,
-              child: const ProgramTabBar(),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.bookmark),
+                ),
+              ],
             ),
             const SizedBox(height: 8,),
             Container(
@@ -95,7 +98,6 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
                           Text("Coba Program"),
                         ],
                       ),
->>>>>>> 45200b6cbee8a8a940d0a7f534bfa40721ea8de9
                     ),
                   ),
                   IconButton(
