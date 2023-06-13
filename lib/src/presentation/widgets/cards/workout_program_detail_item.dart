@@ -12,13 +12,16 @@ class WorkoutProgramDetailItem extends StatelessWidget {
     const String time = "10 Menit";
     const String calories = "260";
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (ctx) =>
-              WorkoutDetailScreen(titleWorkout: title, imageUrl: imageUrl),
-        ),
-      ),
+      // onTap: () => Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (ctx) => WorkoutDetailScreen(
+      //         // TODO: fetch time from API
+      //         titleWorkout: title,
+      //         imageUrl: imageUrl,
+      //         time: "5 menit"),
+      //   ),
+      // ),
       child: Card(
         color: Colors.white,
         surfaceTintColor: Colors.white,

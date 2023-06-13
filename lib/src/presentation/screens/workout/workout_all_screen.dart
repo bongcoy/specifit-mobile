@@ -63,14 +63,17 @@ class WorkoutAllScreen extends StatelessWidget {
                 itemBuilder: (ctx, idx) {
                   return WorkoutCard(
                       title: workouts['data']['data'][idx]['title'].toString(),
-                      // TODO: fetch img from the server and pass it to the card.
-                      imageUrl: "assets/images/workout_2.png",
+                      imageUrl: workouts['data']['data'][idx]['img'].toString(),
                       desc: workouts['data']['data'][idx]['desc'].toString(),
                       time:
                           workouts['data']['data'][idx]['totalEst'].toString(),
                       nWorkout: workouts['data']['data'][idx]['workoutLists']
                           .length
-                          .toString());
+                          .toString(),
+                      workoutList: workouts['data']['data'][idx]
+                          ['workoutLists'],
+                      workoutTimeList: workouts['data']['data'][idx]
+                          ['workoutEsts']);
                 },
               ),
             )

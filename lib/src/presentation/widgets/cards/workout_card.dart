@@ -1,33 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:specifit/src/presentation/providers/auth_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../screens/workout/workout_detail_screen.dart';
 
-class WorkoutCard extends StatelessWidget {
+class WorkoutCard extends ConsumerWidget {
+  final String url = dotenv.env['API_URL']! + "workout/image/" ?? "";
   final String title;
   final String imageUrl;
   final String desc;
   final String time;
   final String nWorkout;
+  final List<dynamic> workoutList;
+  final List<dynamic> workoutTimeList;
 
-  const WorkoutCard({
+  WorkoutCard({
     Key? key,
     required this.title,
     required this.imageUrl,
     required this.desc,
     required this.time,
     required this.nWorkout,
+    required this.workoutList,
+    required this.workoutTimeList,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentAuthData = ref.watch(userAuthProvider);
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
           builder: (ctx) => WorkoutDetailScreen(
-            titleWorkout: title,
+            titleWorkout: workoutList,
             imageUrl: "assets/images/workout_2.png",
+            timeWorkout: workoutTimeList,
           ),
         ),
       ),
@@ -41,13 +50,17 @@ class WorkoutCard extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.20,
-                height: MediaQuery.of(context).size.width * 0.20,
-                child: Image.asset(
-                  imageUrl,
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  width: MediaQuery.of(context).size.width * 0.20,
+                  height: MediaQuery.of(context).size.width * 0.20,
+                  child: Image.network(
+                    url + imageUrl,
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json',
+                      'Authorization': 'Bearer ${currentAuthData.token}',
+                    },
+                    fit: BoxFit.cover,
+                  )),
               const SizedBox(
                 width: 16,
               ),

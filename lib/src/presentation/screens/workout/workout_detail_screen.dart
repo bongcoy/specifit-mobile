@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:specifit/src/presentation/widgets/cards/workout_detail_item.dart';
 
 class WorkoutDetailScreen extends StatelessWidget {
-  final String titleWorkout;
+  final List<dynamic> titleWorkout;
   final String imageUrl;
+  final List<dynamic> timeWorkout;
 
   const WorkoutDetailScreen({
     Key? key,
     required this.titleWorkout,
     required this.imageUrl,
+    required this.timeWorkout,
   }) : super(key: key);
 
   @override
@@ -21,14 +23,16 @@ class WorkoutDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(titleWorkout),
             const Text(descWorkout),
             const SizedBox(height: 8),
             Expanded(
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: titleWorkout[0].length,
                 itemBuilder: (ctx, idx) {
-                  return const WorkoutDetailItem();
+                  return WorkoutDetailItem(
+                    title: titleWorkout[0][idx].toString(),
+                    time: timeWorkout[0][idx].toString(),
+                  );
                 },
               ),
             ),
