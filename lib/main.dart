@@ -4,6 +4,7 @@ import 'package:specifit/src/presentation/screens/front/onboarding_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:specifit/src/presentation/widgets/bottom_navbar.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final theme = ThemeData(
   useMaterial3: true,
@@ -15,7 +16,8 @@ final theme = ThemeData(
   scaffoldBackgroundColor: const Color.fromARGB(255, 249, 249, 249),
 );
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     const ProviderScope(

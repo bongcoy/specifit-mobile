@@ -62,15 +62,18 @@ class WorkoutAllScreen extends StatelessWidget {
                 itemCount: workouts['data']['total'],
                 itemBuilder: (ctx, idx) {
                   return WorkoutCard(
-                    title: workouts['data']['data'][idx]['title'].toString(),
-                    imageUrl: workouts['data']['data'][idx]['img'].toString(),
-                    desc: workouts['data']['data'][idx]['desc'].toString(),
-                    time: workouts['data']['data'][idx]['totalEst'].toString(),
-                    nWorkout: workouts['data']['data'][idx]['workoutLists']
-                        .length
-                        .toString(),
-                    workoutList: workouts['data']['data'][idx]['workoutLists'],
-                  );
+                      title: workouts['data']['data'][idx]['title'].toString(),
+                      imageUrl: workouts['data']['data'][idx]['img'].toString(),
+                      desc: workouts['data']['data'][idx]['desc'].toString(),
+                      time:
+                          workouts['data']['data'][idx]['totalEst'].toString(),
+                      nWorkout: workouts['data']['data'][idx]['workoutLists']
+                          .length
+                          .toString(),
+                      workoutList: workouts['data']['data'][idx]
+                          ['workoutLists'],
+                      workoutTimeList: workouts['data']['data'][idx]
+                          ['workoutEsts']);
                 },
               ),
             )

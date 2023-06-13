@@ -41,6 +41,7 @@ dependencies:
   http: ^1.0.0
   shared_preferences: ^2.1.2
   email_validator: ^2.1.17
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_native_splash: ^2.2.19
@@ -210,6 +211,7 @@ flutter:
     - assets/
     - assets/images/
     - assets/vectors/
+    - .env
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

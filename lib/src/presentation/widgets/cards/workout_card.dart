@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:specifit/src/presentation/providers/auth_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../screens/workout/workout_detail_screen.dart';
 
-class WorkoutCard extends StatelessWidget {
-  final String token =
-      "648848dbb71f94175508df2f|ycelgmppc6KNlI13lljTIUtNaYZt0BPkSNhRbOCu";
-  final String url = "https://specifit.duckdns.org/api/workout/image/";
+class WorkoutCard extends ConsumerWidget {
+  final String url = dotenv.env['API_URL']! + "workout/image/" ?? "";
   final String title;
   final String imageUrl;
   final String desc;
   final String time;
   final String nWorkout;
   final List<dynamic> workoutList;
+  final List<dynamic> workoutTimeList;
 
-  const WorkoutCard({
+  WorkoutCard({
     Key? key,
     required this.title,
     required this.imageUrl,
@@ -22,10 +23,12 @@ class WorkoutCard extends StatelessWidget {
     required this.time,
     required this.nWorkout,
     required this.workoutList,
+    required this.workoutTimeList,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentAuthData = ref.watch(userAuthProvider);
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
@@ -33,7 +36,7 @@ class WorkoutCard extends StatelessWidget {
           builder: (ctx) => WorkoutDetailScreen(
             titleWorkout: workoutList,
             imageUrl: "assets/images/workout_2.png",
-            time: time,
+            timeWorkout: workoutTimeList,
           ),
         ),
       ),
@@ -54,7 +57,7 @@ class WorkoutCard extends StatelessWidget {
                     headers: {
                       'Content-Type': 'application/json',
                       'Accept': 'application/json',
-                      'Authorization': 'Bearer $token',
+                      'Authorization': 'Bearer ${currentAuthData.token}',
                     },
                     fit: BoxFit.cover,
                   )),

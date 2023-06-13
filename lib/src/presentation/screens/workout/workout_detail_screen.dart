@@ -4,13 +4,13 @@ import 'package:specifit/src/presentation/widgets/cards/workout_detail_item.dart
 class WorkoutDetailScreen extends StatelessWidget {
   final List<dynamic> titleWorkout;
   final String imageUrl;
-  final String time;
+  final List<dynamic> timeWorkout;
 
   const WorkoutDetailScreen({
     Key? key,
     required this.titleWorkout,
     required this.imageUrl,
-    required this.time,
+    required this.timeWorkout,
   }) : super(key: key);
 
   @override
@@ -23,16 +23,15 @@ class WorkoutDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Text(titleWorkout),
-            // const Text(descWorkout),
-            // const SizedBox(height: 8),
+            const Text(descWorkout),
+            const SizedBox(height: 8),
             Expanded(
               child: ListView.builder(
                 itemCount: titleWorkout[0].length,
                 itemBuilder: (ctx, idx) {
                   return WorkoutDetailItem(
                     title: titleWorkout[0][idx].toString(),
-                    time: time,
+                    time: timeWorkout[0][idx].toString(),
                   );
                 },
               ),
