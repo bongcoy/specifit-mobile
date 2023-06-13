@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:specifit/src/presentation/providers/auth_provider.dart';
-import 'package:specifit/src/presentation/screens/front/onboarding_screen.dart';
-import './editprofile_screen.dart';
+import 'package:specifit/src/presentation/screens/profile/editprofile_screen.dart';
 
-class ProfileScreen extends ConsumerWidget {
+class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final authProvider = ref.read(userAuthProvider.notifier);
-
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Column(
@@ -37,8 +32,7 @@ class ProfileScreen extends ConsumerWidget {
                     children: [
                       const CircleAvatar(
                         radius: 60,
-                        backgroundImage:
-                            AssetImage('assets/images/profile_image.jpg'),
+                        backgroundImage: AssetImage('assets/profile_image.jpg'),
                       ),
                       const SizedBox(width: 16),
                       Align(
@@ -136,12 +130,6 @@ class ProfileScreen extends ConsumerWidget {
                   ),
                   child: TextButton.icon(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (ctx) => const RiwayatProfileScreen(),
-                        ),
-                      );
                       // Add the desired functionality when the button is pressed
                     },
                     icon: const Icon(
@@ -184,12 +172,6 @@ class ProfileScreen extends ConsumerWidget {
                   child: TextButton.icon(
                     onPressed: () {
                       // Add the desired functionality when the button is pressed
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (ctx) => const ProgramTersimpanScreen(),
-                        ),
-                      );
                     },
                     icon: const Icon(
                       Icons.archive_rounded,
@@ -229,13 +211,7 @@ class ProfileScreen extends ConsumerWidget {
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                       onPressed: () {
-                        authProvider.logout();
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (ctx) => const OnboardingScreen(),
-                          ),
-                        );
+                        // Tambahkan fungsi ketika tombol Logout di tekan
                       },
                     ),
                   ),
