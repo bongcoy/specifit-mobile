@@ -52,13 +52,17 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
             Container(
               color: Colors.white,
               height: MediaQuery.of(context).size.height * 0.52,
               child: const ProgramTabBar(),
             ),
-            const SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
             Row(
               children: [
                 Expanded(
