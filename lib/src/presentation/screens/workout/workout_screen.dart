@@ -14,6 +14,7 @@ class WorkoutScreen extends StatelessWidget {
     // return GestureDetector(
     return SafeArea(
       // onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+
       child: Scaffold(
         // key: scaffoldKey,
         backgroundColor: Colors.white,
@@ -94,34 +95,20 @@ class WorkoutScreen extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: 'Open Sans',
                             color: Color(0xFFFF810D),
-                            fontSize: 10,
+                            fontSize: 12,
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 50,
-                        height: 4,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFF1F4F8),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.28,
-                        child: ListView.builder(
-                          itemCount: 3,
-                          itemBuilder: (ctx, idx) {
-                            return const WorkoutCard();
-                          },
-                        ),
-                      ),
-                    ],
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.28,
+                  child: ListView.builder(
+                    itemCount: 3,
+                    itemBuilder: (ctx, idx) {
+                      return const WorkoutCard();
+                    },
                   ),
                 ),
                 Padding(
@@ -130,7 +117,7 @@ class WorkoutScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        'Program Olahraga >7 hari',
+                        'Program Olahraga 7 hari',
                         style: TextStyle(
                           fontFamily: 'Open Sans',
                           fontSize: 16,
@@ -150,37 +137,23 @@ class WorkoutScreen extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: 'Open Sans',
                             color: Color(0xFFFF810D),
-                            fontSize: 10,
+                            fontSize: 12,
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 50,
-                        height: 4,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFF1F4F8),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.32,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ListView.builder(
-                            itemCount: 3,
-                            itemBuilder: (ctx, idx) {
-                              return const WorkoutProgramItemCard();
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.32,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                      itemCount: 3,
+                      itemBuilder: (ctx, idx) {
+                        return const WorkoutProgramItemCard();
+                      },
+                    ),
                   ),
                 ),
               ],

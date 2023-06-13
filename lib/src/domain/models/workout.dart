@@ -43,34 +43,36 @@ class Workout {
   });
 
   factory Workout.fromJson(Map<String, dynamic> json) => Workout(
-    id: json["_id"],
-    ctgList: List<Category>.from(json["ctgList"].map((x) => Category.fromJson(x))),
-    desc: json["desc"],
-    est: json["est"],
-    img: json["img"],
-    title: json["title"],
-    totalEst: json["totalEst"],
-    vid: json["vid"],
-    workoutEsts: List<String>.from(json["workoutEsts"].map((x) => x)),
-    workoutLists: List<Exercise>.from(json["workoutLists"].map((x) => Exercise.fromJson(x))),
-    workoutId: json["workoutId"],
-    updatedAt: DateTime.parse(json["updated_at"]),
-    createdAt: DateTime.parse(json["created_at"]),
-  );
+        id: json["_id"],
+        ctgList: List<Category>.from(
+            json["ctgList"].map((x) => Category.fromJson(x))),
+        desc: json["desc"],
+        est: json["est"],
+        img: json["img"],
+        title: json["title"],
+        totalEst: json["totalEst"],
+        vid: json["vid"],
+        workoutEsts: List<String>.from(json["workoutEsts"].map((x) => x)),
+        workoutLists: List<Exercise>.from(
+            json["workoutLists"].map((x) => Exercise.fromJson(x))),
+        workoutId: json["workoutId"],
+        updatedAt: DateTime.parse(json["updated_at"]),
+        createdAt: DateTime.parse(json["created_at"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "_id": id,
-    "ctgList": List<dynamic>.from(ctgList.map((x) => x.toJson())),
-    "desc": desc,
-    "est": est,
-    "img": img,
-    "title": title,
-    "totalEst": totalEst,
-    "vid": vid,
-    "workoutEsts": List<dynamic>.from(workoutEsts.map((x) => x)),
-    "workoutLists": List<dynamic>.from(workoutLists.map((x) => x.toJson())),
-    "workoutId": workoutId,
-    "updated_at": updatedAt.toIso8601String(),
-    "created_at": createdAt.toIso8601String(),
-  };
+        "_id": id,
+        "ctgList": List<dynamic>.from(ctgList.map((x) => x.toJson())),
+        "desc": desc,
+        "est": est,
+        "img": img,
+        "title": title,
+        "totalEst": totalEst,
+        "vid": vid,
+        "workoutEsts": List<dynamic>.from(workoutEsts.map((x) => x)),
+        "workoutLists": List<dynamic>.from(workoutLists.map((x) => x.toJson())),
+        "workoutId": workoutId,
+        "updated_at": updatedAt.toIso8601String(),
+        "created_at": createdAt.toIso8601String(),
+      };
 }
