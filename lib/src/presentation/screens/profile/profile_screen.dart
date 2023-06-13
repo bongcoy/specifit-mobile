@@ -5,12 +5,46 @@ import 'package:specifit/src/presentation/screens/front/onboarding_screen.dart';
 import 'package:specifit/src/presentation/screens/profile/riwayat_screen.dart';
 import 'package:specifit/src/presentation/screens/profile/programtersimpan_screen.dart';
 import './editprofile_screen.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class ProfileScreen extends ConsumerWidget {
+dynamic profile;
+
+class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ProfileScreen> createState() => ProfileScreenState();
+}
+
+class ProfileScreenState extends ConsumerState<ProfileScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
+  void _getData() async {
+    // TODO: get token from global state
+    String token = dotenv.env['TOKEN']! ?? "";
+    try {
+      http.Response res = await http
+          .get(Uri.parse(dotenv.env['API_URL']! + "user" ?? ""), headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      });
+      if (res.statusCode == 200) {
+        profile = json.decode(res.body);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final authProvider = ref.read(userAuthProvider.notifier);
 
     return Scaffold(
@@ -47,9 +81,9 @@ class ProfileScreen extends ConsumerWidget {
                         alignment: Alignment.topRight,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text(
-                              'Nama Profil',
+                              profile['data']['name'],
                               style: TextStyle(fontSize: 18),
                             ),
                             // Add more information or widgets related to the profile
@@ -95,7 +129,7 @@ class ProfileScreen extends ConsumerWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (ctx) => const EditProfileScreen(),
+                          builder: (ctx) => EditProfileScreen(),
                         ),
                       );
                     },

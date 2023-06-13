@@ -5,7 +5,6 @@ import 'package:specifit/src/presentation/screens/front/login_screen.dart';
 import 'package:specifit/src/presentation/widgets/bottom_navbar.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:specifit/src/presentation/providers/auth_provider.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class RegisterScreen extends ConsumerStatefulWidget {
@@ -55,7 +54,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
   Future<void> _register() async {
     final authProvider = ref.read(userAuthProvider.notifier);
-    await dotenv.load(fileName: ".env");
 
     if (_formKey.currentState?.validate() ?? false) {
       final name = _nameController.text.trim();
@@ -63,7 +61,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
       final phone = _phoneController.text.trim();
       final password = _passwordController.text.trim();
 
-      final url = Uri.parse(dotenv.env['API_URL']! + "register" ?? "");
+      final url = Uri.parse('https://specifit.duckdns.org/api/register');
 
       try {
         final response = await http.post(
