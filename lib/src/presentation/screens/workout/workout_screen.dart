@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:specifit/src/presentation/screens/workout/workout_all_screen.dart';
@@ -10,17 +11,39 @@ import '../../../domain/models/workout.dart';
 
 import '../../widgets/cards/workout_card.dart';
 
-class WorkoutScreen extends StatelessWidget {
+class WorkoutScreen extends StatefulWidget {
   const WorkoutScreen({super.key});
-  final Workout workoutFromAPI;
 
-  _getData() async {
+  @override
+  State<WorkoutScreen> createState() => _WorkoutScreenState();
+}
+
+dynamic workouts;
+
+class _WorkoutScreenState extends State<WorkoutScreen> {
+  @override
+  void initState() {
+    super.initState();
+    if (workouts == null) {
+      _getData();
+    }
+  }
+
+  void _getData() async {
+    // TODO: get token from global state
+    String token =
+        "648848dbb71f94175508df2f|ycelgmppc6KNlI13lljTIUtNaYZt0BPkSNhRbOCu";
     try {
       String url = "https://specifit.duckdns.org/api/workout";
-      http.Response res = await http.get(Uri.parse(url));
+      http.Response res = await http.get(Uri.parse(url), headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      });
       if (res.statusCode == 200) {
-        Workout workoutFromAPI = Workout.fromJson(json.decode(res.body));
+        workouts = json.decode(res.body);
       }
+      print(workouts['data']['data'][0]['workoutLists'].length.toString());
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -85,7 +108,7 @@ class WorkoutScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SearchBox(),
+                // SearchBox(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Row(
@@ -103,7 +126,9 @@ class WorkoutScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (ctx) => const WorkoutAllScreen(),
+                              builder: (ctx) => WorkoutAllScreen(
+                                workouts: workouts,
+                              ),
                             ),
                           );
                         },
@@ -122,9 +147,21 @@ class WorkoutScreen extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.28,
                   child: ListView.builder(
-                    itemCount: 2,
+                    itemCount: workouts['data']['total'],
                     itemBuilder: (ctx, idx) {
-                      return const WorkoutCard();
+                      return WorkoutCard(
+                          title:
+                              workouts['data']['data'][idx]['title'].toString(),
+                          // TODO: fetch img from the server and pass it to the card.
+                          imageUrl: "assets/images/workout_2.png",
+                          desc:
+                              workouts['data']['data'][idx]['desc'].toString(),
+                          time: workouts['data']['data'][idx]['totalEst']
+                              .toString(),
+                          nWorkout: workouts['data']['data'][idx]
+                                  ['workoutLists']
+                              .length
+                              .toString());
                     },
                   ),
                 ),
@@ -166,7 +203,7 @@ class WorkoutScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListView.builder(
-                      itemCount: 2,
+                      itemCount: 3,
                       itemBuilder: (ctx, idx) {
                         return const WorkoutProgramItemCard();
                       },
