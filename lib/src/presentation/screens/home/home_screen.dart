@@ -15,8 +15,9 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentUserData = ref.watch(userDataProvider);
-    Widget statusCard =
-        currentUserData.isFilled ? const RecommendationSection() : const FormCard();
+    Widget statusCard = currentUserData.isFilled
+        ? const RecommendationSection()
+        : const FormCard();
 
     // DEBUG
     debugPrint(currentUserData.toString()); // TODO: Filters based on UserData
@@ -34,7 +35,7 @@ class HomeScreen extends ConsumerWidget {
                   bottom: 0,
                   child: Center(
                     child: Text(
-                      "Halo, Name",
+                      "Selamat Datang",
                       style: GoogleFonts.openSans(
                         fontSize: 28,
                         color: Colors.white,
