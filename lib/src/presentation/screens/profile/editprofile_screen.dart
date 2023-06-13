@@ -25,14 +25,13 @@ class EditProfileScreenState extends ConsumerState<EditProfileScreen> {
 
   void _getData() async {
     await dotenv.load(fileName: ".env");
-    // TODO: get token from global state
-    String token = dotenv.env['TOKEN']! ?? "";
+    final authProvider = ref.read(userAuthProvider);
     try {
       http.Response res = await http
           .get(Uri.parse(dotenv.env['API_URL']! + "user" ?? ""), headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': 'Bearer $token',
+        'Authorization': 'Bearer ${authProvider.token}',
       });
       if (res.statusCode == 200) {
         profile = json.decode(res.body);

@@ -28,7 +28,7 @@ class WorkoutCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentAuthData = ref.watch(userAuthProvider);
+    final currentAuthData = ref.read(userAuthProvider);
     return GestureDetector(
       onTap: () => Navigator.push(
         context,

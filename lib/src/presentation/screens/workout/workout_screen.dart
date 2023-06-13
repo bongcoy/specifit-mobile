@@ -8,20 +8,19 @@ import 'package:specifit/src/presentation/widgets/cards/workout_program_item_car
 import 'package:specifit/src/presentation/providers/auth_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
-import '../../../domain/models/workout.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../widgets/cards/workout_card.dart';
 
-class WorkoutScreen extends StatefulWidget {
+class WorkoutScreen extends ConsumerStatefulWidget {
   const WorkoutScreen({super.key});
 
   @override
-  State<WorkoutScreen> createState() => _WorkoutScreenState();
+  ConsumerState<WorkoutScreen> createState() => _WorkoutScreenState();
 }
 
 dynamic workouts;
 
-class _WorkoutScreenState extends State<WorkoutScreen> {
+class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
   bool isLoading = true;
   @override
   void initState() {
@@ -30,14 +29,13 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   }
 
   Future _getData() async {
-    // final currentAuthData = ref.watch(userAuthProvider);
+    final authProvider = ref.read(userAuthProvider);
     try {
-      await dotenv.load(fileName: ".env");
       http.Response res = await http
           .get(Uri.parse(dotenv.env['API_URL']! + "workout" ?? ""), headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': 'Bearer ${dotenv.env['TOKEN']}',
+        'Authorization': 'Bearer ${authProvider.token}',
       });
       if (res.statusCode == 200) {
         workouts = json.decode(res.body);
