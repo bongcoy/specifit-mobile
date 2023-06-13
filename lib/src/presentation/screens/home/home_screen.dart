@@ -12,7 +12,7 @@ import 'package:specifit/src/presentation/widgets/category_button.dart';
 import 'package:specifit/src/presentation/widgets/cards/form_card.dart';
 import 'package:specifit/src/presentation/providers/userdata_provider.dart';
 import 'package:specifit/src/presentation/widgets/recommendation_section.dart';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../widgets/cards/recommendation_card.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -24,6 +24,9 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   bool _isDataFetched = false;
+  bool isLoading = true;
+
+  dynamic tips;
 
   @override
   void didChangeDependencies() {
@@ -32,6 +35,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       // getUserData();
       _isDataFetched = true;
     }
+    _getTipsData();
   }
 
   Future<void> getUserData() async {
@@ -51,6 +55,58 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       } else {
         if (context.mounted) {
           final errorData = json.decode(response.body);
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
+              title: Text(errorData['meta']['message']),
+              content: Text(errorData['data']['error']),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        }
+        return;
+      }
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: Colors.white,
+          title: const Text('Error'),
+          content: Text('Error: $e'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
+  Future _getTipsData() async {
+    final authProvider = ref.read(userAuthProvider);
+    try {
+      http.Response res = await http
+          .get(Uri.parse(dotenv.env['API_URL']! + "tips" ?? ""), headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${authProvider.token}',
+      });
+      if (res.statusCode == 200) {
+        tips = json.decode(res.body);
+        setState(() {
+          isLoading = false;
+        });
+      } else {
+        if (context.mounted) {
+          final errorData = json.decode(res.body);
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
@@ -264,13 +320,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     height: MediaQuery.of(context).size.height * 0.32,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: ListView.builder(
-                        itemCount: 2,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (ctx, idx) {
-                          return const TipsCard();
-                        },
-                      ),
+                      child: isLoading
+                          ? Center(child: CircularProgressIndicator())
+                          : ListView.builder(
+                              itemCount: tips['data']['total'],
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (ctx, idx) {
+                                return TipsCard(
+                                  titleTips: tips['data']['data'][idx]['title'],
+                                  imageUrl: tips['data']['data'][idx]['img'],
+                                );
+                              },
+                            ),
                     ),
                   ),
                 ],
