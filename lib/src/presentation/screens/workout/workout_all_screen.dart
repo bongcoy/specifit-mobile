@@ -20,7 +20,7 @@ class WorkoutAllScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SearchBox(),
+            // SearchBox(),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
