@@ -76,6 +76,25 @@ class UserData {
     );
   }
 
+  factory UserData.fromJson(Map<String, dynamic> json) {
+    final userData = json['data']['userData'];
+
+    return UserData(
+      activity: userData['activity'],
+      age: userData['age'],
+      calPerDayHold: userData['calPerDayHold'],
+      calPerDayLose: userData['calPerDayLose'],
+      gender: userData['gender'],
+      height: userData['height'],
+      imt: double.parse(userData['imt']),
+      imtStatus: userData['imtStatus'],
+      isFilled: userData['isFilled'],
+      medicalCondition: userData['medicalCondition'],
+      recommendation: Recommendation.fromJson(userData['recommendation']),
+      weight: userData['weight'],
+    );
+  }
+
   @override
   String toString() {
     return 'UserData(activity: $activity, age: $age, calPerDayHold: $calPerDayHold, calPerDayLose: $calPerDayLose, '

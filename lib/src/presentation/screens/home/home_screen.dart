@@ -1,6 +1,10 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:specifit/src/domain/models/userdata.dart';
+import 'package:specifit/src/presentation/providers/auth_provider.dart';
 import 'package:specifit/src/presentation/screens/tips/tips_screen.dart';
 import 'package:specifit/src/presentation/widgets/cards/tips_card.dart';
 
@@ -11,11 +15,74 @@ import 'package:specifit/src/presentation/widgets/recommendation_section.dart';
 
 import '../../widgets/cards/recommendation_card.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    getUserData();
+  }
+
+  Future<void> getUserData() async {
+    final currentAuthData = ref.watch(userAuthProvider);
+    final userDataNotifier = ref.read(userDataProvider.notifier);
+    final headers = {'Authorization': 'Bearer ${currentAuthData.token}'};
+
+    try {
+      final response = await http.post(
+        Uri.parse('https://specifit.duckdns.org/api/userdata/edit'),
+        headers: headers,
+      );
+      if (response.statusCode == 200) {
+        final jsonData = json.decode(response.body);
+        final userData = UserData.fromJson(jsonData);
+        userDataNotifier.updateUserData(userData);
+      } else {
+        if (context.mounted) {
+          final errorData = json.decode(response.body);
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
+              title: Text(errorData['meta']['message']),
+              content: Text(errorData['data']['error']),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        }
+        return;
+      }
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: Colors.white,
+          title: const Text('Error'),
+          content: Text('Error: $e'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final currentUserData = ref.watch(userDataProvider);
     Widget statusCard = currentUserData.isFilled
         ? const RecommendationSection()

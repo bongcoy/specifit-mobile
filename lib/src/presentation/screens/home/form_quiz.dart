@@ -1,6 +1,10 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:specifit/src/domain/models/userdata.dart';
+import 'package:specifit/src/presentation/providers/auth_provider.dart';
 
 import 'package:specifit/src/presentation/widgets/bottom_navbar.dart';
 import 'package:specifit/src/presentation/providers/userdata_provider.dart';
@@ -95,6 +99,9 @@ class _FormQuizState extends ConsumerState<FormQuiz> {
           userDataNotifier.calculateCalPerDay();
           userDataNotifier.calculateRecommendation();
 
+          // POST
+          postUserData(currentUserData);
+
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const BottomNavBar()),
@@ -105,6 +112,76 @@ class _FormQuizState extends ConsumerState<FormQuiz> {
         showError = true;
       }
     });
+  }
+
+  Future<void> postUserData(UserData userdata) async {
+    final currentAuthData = ref.watch(userAuthProvider);
+    final headers = {
+      'Authorization': 'Bearer ${currentAuthData.token}',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    };
+
+    final body = jsonEncode({
+      'activity': userdata.activity,
+      'age': userdata.age,
+      'calPerDayHold': userdata.calPerDayHold,
+      'calPerDayLose': userdata.calPerDayLose,
+      'dateOfBirth': '1988-05-20',
+      'gender': userdata.gender,
+      'height': userdata.height,
+      'imt': userdata.imt,
+      'imtStatus': userdata.imtStatus,
+      'isFilled': userdata.isFilled,
+      'medicalCondition': userdata.medicalCondition,
+      'recommendation': userdata.recommendation.toJson(),
+      'weight': userdata.weight,
+    });
+
+    try {
+      final response = await http.post(
+        Uri.parse('https://specifit.duckdns.org/api/userdata/edit'),
+        headers: headers,
+        body: body,
+      );
+
+      if (response.statusCode != 200) {
+        if (context.mounted) {
+          final errorData = json.decode(response.body);
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
+              title: Text(errorData['meta']['message']),
+              content: Text(errorData['data']['error']),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        }
+        return;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: Colors.white,
+          title: const Text('Error'),
+          content: Text('Error: $e'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   void _validateInput(String inputValue) {

@@ -52,4 +52,46 @@ class Recommendation {
       strength: false,
     );
   }
+
+  factory Recommendation.fromJson(List<dynamic> json) {
+    final recommendation = json.first;
+
+    return Recommendation(
+      agility: recommendation['agility'],
+      calist: recommendation['calist'],
+      fatburn: recommendation['fatburn'],
+      fourteendays: recommendation['fourteendays'],
+      gainweight: recommendation['gainweight'],
+      gemuk: recommendation['gemuk'],
+      injury: recommendation['injury'],
+      item: recommendation['item'],
+      kurus: recommendation['kurus'],
+      loseweight: recommendation['loseweight'],
+      morefourteen: recommendation['morefourteen'],
+      normal: recommendation['normal'],
+      recommend: recommendation['recommend'],
+      sevendays: recommendation['sevendays'],
+      strength: recommendation['strength'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'agility': agility,
+      'calist': calist,
+      'fatburn': fatburn,
+      'fourteendays': fourteendays,
+      'gainweight': gainweight,
+      'gemuk': gemuk,
+      'injury': injury,
+      'item': item,
+      'kurus': kurus,
+      'loseweight': loseweight,
+      'morefourteen': morefourteen,
+      'normal': normal,
+      'recommend': recommend,
+      'sevendays': sevendays,
+      'strength': strength,
+    };
+  }
 }
