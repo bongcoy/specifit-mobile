@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:specifit/src/presentation/providers/auth_provider.dart';
 import 'package:specifit/src/presentation/screens/front/onboarding_screen.dart';
+import 'package:specifit/src/presentation/screens/profile/riwayat_screen.dart';
+import 'package:specifit/src/presentation/screens/profile/programtersimpan_screen.dart';
 import './editprofile_screen.dart';
 
 class ProfileScreen extends ConsumerWidget {

@@ -54,9 +54,10 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            Container(
-              color: Colors.white,
-            const SizedBox(height: 8,),
+            Container(color: Colors.white),
+            const SizedBox(
+              height: 8,
+            ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.52,
               child: const ProgramTabBar(),
@@ -83,7 +84,9 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
             Container(
               padding: const EdgeInsets.all(8.0),
               color: Colors.white,
