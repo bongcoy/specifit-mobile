@@ -127,124 +127,142 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          color: Colors.white70,
-          child: Stack(
-            children: [
-              Positioned(
-                top: 1,
-                right: 1,
-                child: Image.asset('assets/images/element_1.png'),
-              ),
-              Positioned(
-                top: 100,
-                left: 20,
-                child: Image.asset(
-                  'assets/icon.png',
-                  width: 100,
-                  height: 100,
+  return SafeArea(
+    child: Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              alignment: Alignment.topRight,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Image.asset(
+                      'assets/images/element_1.png',
+                      ),
+                  ],
                 ),
+            ),
+            Container(
+              alignment: Alignment.topLeft,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, left: 1),
+                    child: Image.asset(
+                      'assets/icon.png',
+                      width: 150,
+                      height: 150,
+                    ),
+                  ),
+                ],
               ),
-              Center(
+            ),
+            Container(
+              child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text("Masuk", style: TextStyle(fontSize: 20)),
-                      TextFormField(
-                        controller: _emailController,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.email),
-                          hintText: 'email',
-                          hintStyle: const TextStyle(
-                            color: Color.fromARGB(131, 0, 0, 0),
-                          ),
-                          fillColor: Colors.white,
-                          filled: true,
-                          errorText: _emailError,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      TextFormField(
-                        controller: _passwordController,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.lock),
-                          hintText: 'password',
-                          hintStyle: const TextStyle(
-                            color: Color.fromARGB(148, 0, 0, 0),
-                          ),
-                          fillColor: Colors.white,
-                          filled: true,
-                          errorText: _passwordError,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      ElevatedButton(
-                        onPressed: () => _login(
-                          context,
-                          ref,
-                          _emailController.text.trim(),
-                          _passwordController.text.trim(),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(255, 247, 125, 11),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                        child: const Text(
-                          'Login',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  color: Colors.white,
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Belum punya akun Specifit?',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(width: 4),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (ctx) => const RegisterScreen(),
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("Masuk", style: TextStyle(fontSize: 20)),
+                          TextFormField(
+                            controller: _emailController,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.email),
+                              hintText: 'email',
+                              hintStyle: const TextStyle(
+                                color: Color.fromARGB(131, 0, 0, 0),
+                              ),
+                              fillColor: Colors.white,
+                              filled: true,
+                              errorText: _emailError,
                             ),
-                          );
-                        },
-                        child: const Text(
-                          'Daftar',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 243, 152, 33),
                           ),
-                        ),
+                          const SizedBox(height: 10),
+                          TextFormField(
+                            controller: _passwordController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              prefixIcon: const Icon(Icons.lock),
+                              hintText: 'password',
+                              hintStyle: const TextStyle(
+                                color: Color.fromARGB(148, 0, 0, 0),
+                              ),
+                              fillColor: Colors.white,
+                              filled: true,
+                              errorText: _passwordError,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: () => _login(
+                              context,
+                              ref,
+                              _emailController.text.trim(),
+                              _passwordController.text.trim(),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color.fromARGB(255, 247, 125, 11),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                            ),
+                            child: const Text(
+                              'Login',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+            Container(
+              alignment: Alignment.bottomCenter,
+              color: Colors.white,
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Belum punya akun Specifit?',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  const SizedBox(width: 4),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => const RegisterScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      'Daftar',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 243, 152, 33),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }
