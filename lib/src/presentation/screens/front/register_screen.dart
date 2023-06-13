@@ -118,7 +118,7 @@ class RegisterScreen extends StatelessWidget {
                         Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                      builder: (ctx) => const LoginScreen(),
+                      builder: (ctx) => LoginScreen(),
                     ),
                   );
                       },
