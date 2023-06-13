@@ -38,6 +38,9 @@ class EditProfileScreenState extends ConsumerState<EditProfileScreen> {
         profile = json.decode(res.body);
         setState(() {
           isLoading = false;
+          _phoneController.text = profile['data']['phone'];
+          _emailController.text = profile['data']['email'];
+          _nameController.text = profile['data']['name'];
         });
       }
     } catch (e) {
@@ -45,11 +48,10 @@ class EditProfileScreenState extends ConsumerState<EditProfileScreen> {
     }
   }
 
-  final _nameController = TextEditingController(text: profile['data']['name']);
-  final _emailController =
-      TextEditingController(text: profile['data']['email']);
-  final _phoneController =
-      TextEditingController(text: profile['data']['phone']);
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
+
   @override
   Future _postData() async {
     // final currentAuthData = ref.watch(userAuthProvider);
