@@ -23,10 +23,15 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
+  bool _isDataFetched = false;
+
   @override
-  void initState() {
-    super.initState();
-    getUserData();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isDataFetched) {
+      // getUserData();
+      _isDataFetched = true;
+    }
   }
 
   Future<void> getUserData() async {
@@ -35,8 +40,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final headers = {'Authorization': 'Bearer ${currentAuthData.token}'};
 
     try {
-      final response = await http.post(
-        Uri.parse('https://specifit.duckdns.org/api/userdata/edit'),
+      final response = await http.get(
+        Uri.parse('https://specifit.duckdns.org/api/userdata'),
         headers: headers,
       );
       if (response.statusCode == 200) {
@@ -141,22 +146,34 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    SingleChildScrollView(
+                    const SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        children: const [
+                        children: [
                           CategoryButton(
-                              icon: Icons.fitness_center, label: "Legs"),
+                            icon: Icons.accessibility,
+                            label: "Legs",
+                          ),
                           CategoryButton(
-                              icon: Icons.fitness_center, label: "Legs"),
+                            icon: Icons.fitness_center,
+                            label: "Arms",
+                          ),
                           CategoryButton(
-                              icon: Icons.fitness_center, label: "Legs"),
+                            icon: Icons.shield,
+                            label: "Abs",
+                          ),
                           CategoryButton(
-                              icon: Icons.fitness_center, label: "Legs"),
+                            icon: Icons.self_improvement,
+                            label: "Chest",
+                          ),
                           CategoryButton(
-                              icon: Icons.fitness_center, label: "Legs"),
+                            icon: Icons.arrow_back,
+                            label: "Back",
+                          ),
                           CategoryButton(
-                              icon: Icons.fitness_center, label: "Legs"),
+                            icon: Icons.directions_run,
+                            label: "Cardio",
+                          ),
                         ],
                       ),
                     ),

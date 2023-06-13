@@ -25,7 +25,7 @@ class FormScreen extends StatelessWidget {
               height: 60,
             ),
             Text(
-              'Halo, Nama',
+              'Halo',
               style: GoogleFonts.openSans(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
