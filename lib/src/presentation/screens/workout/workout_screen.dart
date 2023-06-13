@@ -1,13 +1,30 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:specifit/src/presentation/screens/workout/workout_all_screen.dart';
 import 'package:specifit/src/presentation/screens/workout/workout_program_all_screen.dart';
 import 'package:specifit/src/presentation/widgets/cards/workout_program_item_card.dart';
 import 'package:specifit/src/presentation/widgets/search_box.dart';
+import 'package:http/http.dart' as http;
+import '../../../domain/models/workout.dart';
 
 import '../../widgets/cards/workout_card.dart';
 
 class WorkoutScreen extends StatelessWidget {
   const WorkoutScreen({super.key});
+  final Workout workoutFromAPI;
+
+  _getData() async {
+    try {
+      String url = "https://specifit.duckdns.org/api/workout";
+      http.Response res = await http.get(Uri.parse(url));
+      if (res.statusCode == 200) {
+        Workout workoutFromAPI = Workout.fromJson(json.decode(res.body));
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
