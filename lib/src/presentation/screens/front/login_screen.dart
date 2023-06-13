@@ -82,12 +82,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         }
       } else {
         if (context.mounted) {
+          final errorData = json.decode(response.body);
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
               backgroundColor: Colors.white,
-              title: const Text('Error'),
-              content: Text(response.reasonPhrase.toString()),
+              title: Text(errorData['meta']['message']),
+              content: Text(errorData['data']['error']),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),

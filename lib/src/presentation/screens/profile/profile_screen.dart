@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:specifit/src/presentation/providers/auth_provider.dart';
+import 'package:specifit/src/presentation/screens/front/onboarding_screen.dart';
 import './editprofile_screen.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -36,7 +37,7 @@ class ProfileScreen extends ConsumerWidget {
                     children: [
                       const CircleAvatar(
                         radius: 60,
-                        backgroundImage: AssetImage('assets/profile_image.jpg'),
+                        // backgroundImage: AssetImage('assets/profile_image.jpg'),
                       ),
                       const SizedBox(width: 16),
                       Align(
@@ -216,6 +217,12 @@ class ProfileScreen extends ConsumerWidget {
                       ),
                       onPressed: () {
                         authProvider.logout();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (ctx) => const OnboardingScreen(),
+                          ),
+                        );
                       },
                     ),
                   ),
