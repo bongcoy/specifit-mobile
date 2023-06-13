@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:specifit/src/presentation/providers/auth_provider.dart';
 import 'package:specifit/src/presentation/screens/front/onboarding_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:specifit/src/presentation/widgets/bottom_navbar.dart';
 
 final theme = ThemeData(
   useMaterial3: true,
@@ -22,13 +24,16 @@ void main() {
   );
 }
 
-class App extends StatelessWidget {
+class App extends ConsumerWidget {
   const App({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentUserAuth = ref.watch(userAuthProvider);
     return MaterialApp(
-      home: const OnboardingScreen(),
+      home: currentUserAuth.isLoggedIn
+          ? const BottomNavBar()
+          : const OnboardingScreen(),
       theme: theme,
       debugShowCheckedModeBanner: false,
     );

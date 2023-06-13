@@ -52,6 +52,7 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
+<<<<<<< HEAD
             const SizedBox(
               height: 8,
             ),
@@ -73,14 +74,36 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
                         Icon(Icons.add),
                         Text("Coba Program"),
                       ],
+=======
+            const SizedBox(height: 8,),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.52,
+              child: const ProgramTabBar(),
+            ),
+            const SizedBox(height: 8,),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              color: Colors.white,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Row(
+                        children: const [
+                          Icon(Icons.add),
+                          Text("Coba Program"),
+                        ],
+                      ),
+>>>>>>> 45200b6cbee8a8a940d0a7f534bfa40721ea8de9
                     ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.bookmark),
-                ),
-              ],
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.bookmark),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

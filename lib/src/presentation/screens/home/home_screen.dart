@@ -37,7 +37,7 @@ class HomeScreen extends ConsumerWidget {
                   bottom: 0,
                   child: Center(
                     child: Text(
-                      "Halo, Name",
+                      "Selamat Datang",
                       style: GoogleFonts.openSans(
                         fontSize: 28,
                         color: Colors.white,

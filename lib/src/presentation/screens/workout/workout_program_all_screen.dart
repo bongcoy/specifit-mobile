@@ -53,14 +53,14 @@ class WorkoutProgramAllScreen extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       const Text("Goals"),
-                                      const FilterButton(),
+                                      // const FilterButton(),
                                       const Text("Status Indeks Massa Tubuh"),
-                                      const FilterButton(),
+                                      // const FilterButton(),
                                       const Text("Punya Kondisi Medis"),
                                       const Text("Lainnya"),
-                                      const FilterButton(),
+                                      // const FilterButton(),
                                       const Text("Waktu"),
-                                      const FilterButton(),
+                                      // const FilterButton(),
                                       Center(
                                         child: ElevatedButton(
                                           onPressed: () {
@@ -80,7 +80,7 @@ class WorkoutProgramAllScreen extends StatelessWidget {
                     },
                     child: const Text("Filter"),
                   ),
-                  const FilterButton(),
+                  // const FilterButton(),
                 ],
               ),
             ),

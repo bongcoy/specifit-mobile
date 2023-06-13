@@ -35,9 +35,9 @@ class WorkoutAllScreen extends StatelessWidget {
                             children: [
                               const Text("Filter Olahraga"),
                               const Text("Kategori"),
-                              const FilterButton(),
-                              const Text("Kategori"),
-                              const FilterButton(),
+                              // const FilterButton(),
+                              const Text("Waktu"),
+                              // const FilterButton(),
                               ElevatedButton(
                                 onPressed: () {
                                   // save filter
@@ -51,7 +51,7 @@ class WorkoutAllScreen extends StatelessWidget {
                     },
                     child: const Text("Filter"),
                   ),
-                  const FilterButton(),
+                  // const FilterButton(),
                 ],
               ),
             ),

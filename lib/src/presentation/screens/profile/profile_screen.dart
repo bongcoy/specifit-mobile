@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:specifit/src/presentation/screens/profile/programtersimpan_screen.dart';
-import 'package:specifit/src/presentation/screens/profile/riwayat_screen.dart';
-import 'editprofile_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:specifit/src/presentation/providers/auth_provider.dart';
+import './editprofile_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authProvider = ref.read(userAuthProvider.notifier);
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -226,7 +228,7 @@ class ProfileScreen extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                       onPressed: () {
-                        // Tambahkan fungsi ketika tombol Logout di tekan
+                        authProvider.logout();
                       },
                     ),
                   ),

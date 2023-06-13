@@ -1,42 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:specifit/src/presentation/themes.dart';
 
-enum ExerciseFilter { arbs, arms, legs, shoulders }
+class FilterButton extends StatelessWidget {
+  final String label;
+  final VoidCallback onPressed;
+  final bool selected;
 
-class FilterButton extends StatefulWidget {
-  const FilterButton({Key? key}) : super(key: key);
-
-  @override
-  State<FilterButton> createState() => _FilterButtonState();
-}
-
-class _FilterButtonState extends State<FilterButton> {
-  Set<ExerciseFilter> filters = <ExerciseFilter>{};
+  const FilterButton({
+    Key? key,
+    required this.label,
+    required this.onPressed,
+    this.selected = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // final TextTheme textTheme = Theme.of(context).textTheme;
-
-    return Center(
-      child: Wrap(
-        spacing: 5.0,
-        children: ExerciseFilter.values.map((ExerciseFilter exercise) {
-          return FilterChip(
-            backgroundColor: Colors.white,
-            selectedColor: orangeColor,
-            label: Text(exercise.name),
-            selected: filters.contains(exercise),
-            onSelected: (bool selected) {
-              setState(() {
-                if (selected) {
-                  filters.add(exercise);
-                } else {
-                  filters.remove(exercise);
-                }
-              });
-            },
-          );
-        }).toList(),
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ButtonStyle(
+        backgroundColor: MaterialStateColor.resolveWith((states) {
+          if (states.contains(MaterialState.pressed)) {
+            return Colors.orange;
+          }
+          return selected ? Colors.orange : Colors.grey;
+        }),
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(fontSize: 18.0),
       ),
     );
   }
