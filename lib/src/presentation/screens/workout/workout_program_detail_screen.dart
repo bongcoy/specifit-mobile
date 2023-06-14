@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:specifit/src/presentation/themes.dart';
 import 'package:specifit/src/presentation/widgets/box/expandable_text.dart';
+import 'package:specifit/src/presentation/widgets/buttons/bookmark_button.dart';
+import 'package:specifit/src/presentation/widgets/buttons/try_program.dart';
 import 'package:specifit/src/presentation/widgets/program_tab_bar.dart';
 
 class WorkoutProgramDetailScreen extends StatelessWidget {
@@ -51,35 +53,9 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            Container(color: Colors.white),
-            const SizedBox(
-              height: 8,
-            ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.52,
               child: const ProgramTabBar(),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Row(
-                      children: [
-                        Icon(Icons.add),
-                        Text("Coba Program"),
-                      ],
-                    ),
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.bookmark),
-                ),
-              ],
             ),
             const SizedBox(
               height: 8,
@@ -89,21 +65,11 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
               color: Colors.white,
               child: Row(
                 children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: const Row(
-                        children: [
-                          Icon(Icons.add),
-                          Text("Coba Program"),
-                        ],
-                      ),
-                    ),
+                  TryProgram(
+                    onButtonSelected: () {},
+                    onButtonUnselected: () {},
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.bookmark),
-                  ),
+                  const BookmarkButton(),
                 ],
               ),
             ),
