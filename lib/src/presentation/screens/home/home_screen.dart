@@ -6,7 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:specifit/src/domain/models/userdata.dart';
 import 'package:specifit/src/presentation/providers/auth_provider.dart';
 import 'package:specifit/src/presentation/screens/tips/tips_screen.dart';
+import 'package:specifit/src/presentation/themes.dart';
 import 'package:specifit/src/presentation/widgets/cards/tips_card.dart';
+import 'package:specifit/src/presentation/widgets/cards/workout_program_home.dart';
 
 import 'package:specifit/src/presentation/widgets/category_button.dart';
 import 'package:specifit/src/presentation/widgets/cards/form_card.dart';
@@ -93,8 +95,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Future _getTipsData() async {
     final authProvider = ref.read(userAuthProvider);
     try {
-      http.Response res = await http
-          .get(Uri.parse("${dotenv.env['API_URL']!}tips"), headers: {
+      http.Response res =
+          await http.get(Uri.parse("${dotenv.env['API_URL']!}tips"), headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer ${authProvider.token}',
@@ -249,13 +251,34 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Program Olahraga Saya',
-                      style: GoogleFonts.openSans(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Program Olahraga Saya',
+                          style: GoogleFonts.openSans(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                        const Text(
+                          "Lihat Semua",
+                          style: TextStyle(color: orangeColor),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 100,
+                      child: ListView.builder(
+                        itemCount: 2,
+                        itemBuilder: (ctx, idx) {
+                          return const WorkoutPorgramHomeCard(
+                            title: "Menurunkan berat badan",
+                            type: "Lose Weight",
+                          );
+                        },
                       ),
-                      textAlign: TextAlign.left,
                     ),
                   ],
                 ),
@@ -336,58 +359,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                 ],
               ),
-              // SingleChildScrollView(
-              //   scrollDirection: Axis.horizontal,
-              //   child: Row(
-              //     children: [
-              //       Stack(
-              //         children: [
-              //           Container(
-              //             margin: const EdgeInsets.all(16),
-              //             child: Container(
-              //               decoration: BoxDecoration(
-              //                 borderRadius: BorderRadius.circular(12),
-              //               ),
-              //               height: 200,
-              //               width: 300,
-              //               child: ClipRRect(
-              //                 borderRadius: BorderRadius.circular(12),
-              //                 child: Image.asset(
-              //                   "assets/images/program_1.png",
-              //                   fit: BoxFit.cover,
-              //                 ),
-              //               ),
-              //             ),
-              //           ),
-              //           Positioned(
-              //             bottom: 15,
-              //             left: 15,
-              //             right: 15,
-              //             child: Container(
-              //               padding: EdgeInsets.symmetric(vertical: 8),
-              //               decoration: BoxDecoration(
-              //                 color: Colors.white,
-              //                 borderRadius: BorderRadius.only(
-              //                   bottomLeft: Radius.circular(12),
-              //                   bottomRight: Radius.circular(12),
-              //                 ),
-              //               ),
-              //               child: Text(
-              //                 "Kapan Waktu yang tepat untuk berolahraga",
-              //                 style: TextStyle(
-              //                   fontSize: 14,
-              //                   fontWeight: FontWeight.bold,
-              //                   color: Colors.black,
-              //                 ),
-              //                 textAlign: TextAlign.start,
-              //               ),
-              //             ),
-              //           ),
-              //         ],
-              //       ),
-              //     ],
-              //   ),
-              // ),
             ),
           ],
         ),
