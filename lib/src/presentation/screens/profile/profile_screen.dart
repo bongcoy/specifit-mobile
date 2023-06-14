@@ -1,11 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:specifit/src/presentation/providers/auth_provider.dart';
+import 'package:specifit/src/presentation/screens/front/onboarding_screen.dart';
+import 'package:specifit/src/presentation/screens/profile/riwayat_screen.dart';
+import 'package:specifit/src/presentation/screens/profile/programtersimpan_screen.dart';
 import './editprofile_screen.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class ProfileScreen extends StatelessWidget {
+dynamic profile;
+
+class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
 
   @override
+  ConsumerState<ProfileScreen> createState() => ProfileScreenState();
+}
+
+class ProfileScreenState extends ConsumerState<ProfileScreen> {
+  bool isLoading = true;
+  @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
+  void _getData() async {
+    final authProvider = ref.read(userAuthProvider);
+    try {
+      http.Response res = await http
+          .get(Uri.parse(dotenv.env['API_URL']! + "user" ?? ""), headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${authProvider.token}',
+      });
+      if (res.statusCode == 200) {
+        profile = json.decode(res.body);
+        setState(() {
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final authProvider = ref.read(userAuthProvider.notifier);
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -32,18 +76,21 @@ class ProfileScreen extends StatelessWidget {
                     children: [
                       const CircleAvatar(
                         radius: 60,
-                        backgroundImage: AssetImage('assets/profile_image.jpg'),
+                        backgroundImage:
+                            AssetImage('assets/images/profile_image.jpg'),
                       ),
                       const SizedBox(width: 16),
                       Align(
                         alignment: Alignment.topRight,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              'Nama Profil',
-                              style: TextStyle(fontSize: 18),
-                            ),
+                          children: [
+                            isLoading
+                                ? Center(child: CircularProgressIndicator())
+                                : Text(
+                                    profile['data']['name'],
+                                    style: TextStyle(fontSize: 18),
+                                  ),
                             // Add more information or widgets related to the profile
                           ],
                         ),
@@ -87,7 +134,7 @@ class ProfileScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (ctx) => const EditProfileScreen(),
+                          builder: (ctx) => EditProfileScreen(),
                         ),
                       );
                     },
@@ -130,6 +177,12 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   child: TextButton.icon(
                     onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => const RiwayatProfileScreen(),
+                        ),
+                      );
                       // Add the desired functionality when the button is pressed
                     },
                     icon: const Icon(
@@ -172,6 +225,12 @@ class ProfileScreen extends StatelessWidget {
                   child: TextButton.icon(
                     onPressed: () {
                       // Add the desired functionality when the button is pressed
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => const ProgramTersimpanScreen(),
+                        ),
+                      );
                     },
                     icon: const Icon(
                       Icons.archive_rounded,
@@ -211,7 +270,13 @@ class ProfileScreen extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                       onPressed: () {
-                        // Tambahkan fungsi ketika tombol Logout di tekan
+                        authProvider.logout();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (ctx) => const OnboardingScreen(),
+                          ),
+                        );
                       },
                     ),
                   ),

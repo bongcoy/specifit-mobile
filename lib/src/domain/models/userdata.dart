@@ -38,7 +38,7 @@ class UserData {
       gender: 0,
       height: 0,
       imt: 0,
-      imtStatus: "",
+      imtStatus: "Normal",
       isFilled: false,
       medicalCondition: 0,
       recommendation: Recommendation.initial(),
@@ -73,6 +73,25 @@ class UserData {
       medicalCondition: medicalCondition ?? this.medicalCondition,
       recommendation: recommendation ?? this.recommendation,
       weight: weight ?? this.weight,
+    );
+  }
+
+  factory UserData.fromJson(Map<String, dynamic> json) {
+    final userData = json['data']['userData'];
+
+    return UserData(
+      activity: userData['activity'],
+      age: userData['age'],
+      calPerDayHold: userData['calPerDayHold'],
+      calPerDayLose: userData['calPerDayLose'],
+      gender: userData['gender'],
+      height: userData['height'],
+      imt: double.parse(userData['imt']),
+      imtStatus: userData['imtStatus'],
+      isFilled: userData['isFilled'],
+      medicalCondition: userData['medicalCondition'],
+      recommendation: Recommendation.fromJson(userData['recommendation']),
+      weight: userData['weight'],
     );
   }
 

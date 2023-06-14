@@ -5,7 +5,8 @@ import 'package:specifit/src/presentation/widgets/cards/workout_card.dart';
 import 'package:specifit/src/presentation/widgets/search_box.dart';
 
 class WorkoutAllScreen extends StatelessWidget {
-  const WorkoutAllScreen({Key? key}) : super(key: key);
+  final dynamic workouts;
+  const WorkoutAllScreen({Key? key, required this.workouts}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class WorkoutAllScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SearchBox(),
+            // SearchBox(),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -58,11 +59,21 @@ class WorkoutAllScreen extends StatelessWidget {
             const Text("Olahraga"),
             Expanded(
               child: ListView.builder(
-                itemCount: 3,
+                itemCount: workouts['data']['total'],
                 itemBuilder: (ctx, idx) {
-                  return const WorkoutCard(
-                      // workout: workoutList[idx],
-                      );
+                  return WorkoutCard(
+                      title: workouts['data']['data'][idx]['title'].toString(),
+                      imageUrl: workouts['data']['data'][idx]['img'].toString(),
+                      desc: workouts['data']['data'][idx]['desc'].toString(),
+                      time:
+                          workouts['data']['data'][idx]['totalEst'].toString(),
+                      nWorkout: workouts['data']['data'][idx]['workoutLists']
+                          .length
+                          .toString(),
+                      workoutList: workouts['data']['data'][idx]
+                          ['workoutLists'],
+                      workoutTimeList: workouts['data']['data'][idx]
+                          ['workoutEsts']);
                 },
               ),
             )

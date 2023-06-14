@@ -20,7 +20,7 @@ class WorkoutProgramAllScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SearchBox(),
+            // SearchBox(),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -50,7 +50,8 @@ class WorkoutProgramAllScreen extends StatelessWidget {
                               Expanded(
                                 child: SingleChildScrollView(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       const Text("Goals"),
                                       // const FilterButton(),
