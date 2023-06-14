@@ -2,8 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:specifit/src/presentation/widgets/buttons/day_button.dart';
 import 'package:specifit/src/presentation/widgets/cards/workout_program_detail_item.dart';
 
-class ScheduleTabView extends StatelessWidget {
+class ScheduleTabView extends StatefulWidget {
   const ScheduleTabView({Key? key}) : super(key: key);
+
+  @override
+  State<ScheduleTabView> createState() => _ScheduleTabViewState();
+}
+
+class _ScheduleTabViewState extends State<ScheduleTabView> {
+  final List<int> days = [1, 2, 3, 4, 5, 6, 7];
+
+  int? selectedDay;
+
+  void handleButtonSelected(int day) {
+    selectedDay = day;
+    // Perform any additional logic when a button is selected
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +32,10 @@ class ScheduleTabView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 56,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 7,
-                    itemBuilder: (ctx, idx) {
-                      return DayButton(
-                        nDay: (idx + 1).toString(),
-                      );
-                    },
+                  height: 32,
+                  child: DayButton(
+                    days: days,
+                    onButtonSelected: handleButtonSelected,
                   ),
                 ),
                 const SizedBox(

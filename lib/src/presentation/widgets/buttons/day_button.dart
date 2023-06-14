@@ -2,44 +2,56 @@ import 'package:flutter/material.dart';
 import 'package:specifit/src/presentation/themes.dart';
 
 class DayButton extends StatefulWidget {
-  final String nDay;
-  const DayButton({Key? key, required this.nDay}) : super(key: key);
+  final List<int> days;
+  final void Function(int) onButtonSelected;
+
+  const DayButton({
+    Key? key,
+    required this.days,
+    required this.onButtonSelected,
+  }) : super(key: key);
 
   @override
-  State<DayButton> createState() => _DayButtonState();
+  _DayButtonState createState() => _DayButtonState();
 }
 
 class _DayButtonState extends State<DayButton> {
-  bool isActive = false;
+  int? _selectedDay;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          isActive = !isActive;
-        });
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: widget.days.length,
+      itemBuilder: (context, index) {
+        final day = widget.days[index];
+        final isSelected = day == _selectedDay;
+
+        return Padding(
+          padding: const EdgeInsets.only(right: 4.0),
+          child: ElevatedButton(
+            onPressed: () {
+              setState(() {
+                if (isSelected) {
+                  _selectedDay = null;
+                } else {
+                  _selectedDay = day;
+                  widget.onButtonSelected(day);
+                }
+              });
+            },
+            style: ElevatedButton.styleFrom(
+              primary: isSelected ? orangeColor : Colors.grey,
+            ),
+            child: Text(
+              day.toString(),
+              style: TextStyle(
+                color: isSelected ? Colors.white : Colors.black,
+              ),
+            ),
+          ),
+        );
       },
-      child: Card(
-        margin: const EdgeInsets.only(right: 16),
-        color: isActive ? orangeColor : Colors.white,
-        child: Column(
-          children: [
-            Text(
-              "Day",
-              style: TextStyle(
-                color: isActive ? Colors.white : Colors.black,
-              ),
-            ),
-            Text(
-              widget.nDay,
-              style: TextStyle(
-                color: isActive ? Colors.white : Colors.black,
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
