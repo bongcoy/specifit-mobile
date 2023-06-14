@@ -162,7 +162,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                         const Text("Daftar", style: TextStyle(fontSize: 20)),
                         TextFormField(
                           controller: _nameController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.man),
                             hintText: 'Nama',
                             hintStyle:
@@ -175,7 +175,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                         const SizedBox(height: 10),
                         TextFormField(
                           controller: _emailController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.email),
                             hintText: 'Email',
                             hintStyle:
@@ -187,7 +187,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                         ),
                         TextFormField(
                           controller: _phoneController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.phone),
                             hintText: 'Telepon',
                             hintStyle:
@@ -201,7 +201,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                         TextFormField(
                           controller: _passwordController,
                           obscureText: true,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.lock),
                             hintText: 'password',
                             hintStyle:

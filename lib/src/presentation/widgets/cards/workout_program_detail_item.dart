@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:specifit/src/presentation/screens/workout/workout_detail_screen.dart';
 import 'package:specifit/src/presentation/themes.dart';
 
 class WorkoutProgramDetailItem extends StatelessWidget {
@@ -22,21 +21,21 @@ class WorkoutProgramDetailItem extends StatelessWidget {
       //         time: "5 menit"),
       //   ),
       // ),
-      child: Card(
+      child: const Card(
         color: Colors.white,
         surfaceTintColor: Colors.white,
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: EdgeInsets.all(12.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(title),
-                  const SizedBox(height: 8),
+                  Text(title),
+                  SizedBox(height: 8),
                   Row(
-                    children: const [
+                    children: [
                       Icon(
                         Icons.watch_later_outlined,
                         color: grey2Color,
@@ -48,7 +47,7 @@ class WorkoutProgramDetailItem extends StatelessWidget {
                     ],
                   ),
                   Row(
-                    children: const [
+                    children: [
                       Icon(
                         Icons.local_fire_department_outlined,
                         color: grey2Color,
@@ -61,7 +60,7 @@ class WorkoutProgramDetailItem extends StatelessWidget {
                   ),
                 ],
               ),
-              const Text("08.00"),
+              Text("08.00"),
             ],
           ),
         ),

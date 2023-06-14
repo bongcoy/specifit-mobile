@@ -33,11 +33,11 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
             ),
             Container(
               color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
+              child: const Padding(
+                padding: EdgeInsets.all(12.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text("Deskripsi Program"),
                     SizedBox(
                       height: 8,
@@ -70,8 +70,8 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: Row(
-                      children: const [
+                    child: const Row(
+                      children: [
                         Icon(Icons.add),
                         Text("Coba Program"),
                       ],
@@ -95,8 +95,8 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: Row(
-                        children: const [
+                      child: const Row(
+                        children: [
                           Icon(Icons.add),
                           Text("Coba Program"),
                         ],

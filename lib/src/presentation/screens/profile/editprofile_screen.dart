@@ -8,7 +8,7 @@ import 'dart:convert';
 dynamic profile;
 
 class EditProfileScreen extends ConsumerStatefulWidget {
-  EditProfileScreen({super.key});
+  const EditProfileScreen({super.key});
 
   @override
   ConsumerState<EditProfileScreen> createState() => EditProfileScreenState();
@@ -28,7 +28,7 @@ class EditProfileScreenState extends ConsumerState<EditProfileScreen> {
     final authProvider = ref.read(userAuthProvider);
     try {
       http.Response res = await http
-          .get(Uri.parse(dotenv.env['API_URL']! + "user" ?? ""), headers: {
+          .get(Uri.parse("${dotenv.env['API_URL']!}user"), headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer ${authProvider.token}',
@@ -51,7 +51,6 @@ class EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
 
-  @override
   Future _postData() async {
     // final currentAuthData = ref.watch(userAuthProvider);
     try {
@@ -60,7 +59,7 @@ class EditProfileScreenState extends ConsumerState<EditProfileScreen> {
       final email = _emailController.text.trim();
       final phone = _phoneController.text.trim();
       http.Response res = await http
-          .post(Uri.parse(dotenv.env['API_URL']! + "user/edit" ?? ""), body: {
+          .post(Uri.parse("${dotenv.env['API_URL']!}user/edit"), body: {
         'name': name,
         'email': email,
         'phone': phone,
@@ -128,7 +127,7 @@ class EditProfileScreenState extends ConsumerState<EditProfileScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),
@@ -136,55 +135,55 @@ class EditProfileScreenState extends ConsumerState<EditProfileScreen> {
             Navigator.pop(context);
           },
         ),
-        title: Text(
+        title: const Text(
           'Edit Profile',
           style: TextStyle(color: Colors.black),
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               radius: 60,
               backgroundImage: AssetImage('assets/profile_image.jpg'),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Align(
               alignment: Alignment.center,
               child: TextButton(
                 onPressed: () {
                   // Tombol edit gambar ditekan
                 },
-                child: Text('Edit Gambar'),
+                child: const Text('Edit Gambar'),
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             isLoading
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : TextFormField(
                     controller: _nameController,
-                    decoration: InputDecoration(labelText: 'Nama'),
+                    decoration: const InputDecoration(labelText: 'Nama'),
                     // initialValue: profile['data']['name'],
                   ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             isLoading
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : TextFormField(
                     controller: _phoneController,
-                    decoration: InputDecoration(labelText: 'Nomor HP'),
+                    decoration: const InputDecoration(labelText: 'Nomor HP'),
                     // initialValue: profile['data']['phone'],
                   ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             isLoading
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : TextFormField(
                     controller: _emailController,
-                    decoration: InputDecoration(labelText: 'Alamat Email'),
+                    decoration: const InputDecoration(labelText: 'Alamat Email'),
                     // initialValue: profile['data']['email'],
                   ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
                 _postData();
@@ -194,7 +193,7 @@ class EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                 primary: Colors.orange,
                 onPrimary: Colors.white,
               ),
-              child: Text('Simpan'),
+              child: const Text('Simpan'),
             ),
           ],
         ),

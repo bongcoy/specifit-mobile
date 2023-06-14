@@ -32,7 +32,7 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
     final authProvider = ref.read(userAuthProvider);
     try {
       http.Response res = await http
-          .get(Uri.parse(dotenv.env['API_URL']! + "workout" ?? ""), headers: {
+          .get(Uri.parse("${dotenv.env['API_URL']!}workout"), headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer ${authProvider.token}',
@@ -155,7 +155,7 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
                       TextButton(
                         onPressed: () {
                           isLoading
-                              ? Center(child: CircularProgressIndicator())
+                              ? const Center(child: CircularProgressIndicator())
                               : Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -180,7 +180,7 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.28,
                   child: isLoading
-                      ? Center(child: CircularProgressIndicator())
+                      ? const Center(child: CircularProgressIndicator())
                       : ListView.builder(
                           itemCount: workouts['data']['total'],
                           itemBuilder: (ctx, idx) {

@@ -94,7 +94,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final authProvider = ref.read(userAuthProvider);
     try {
       http.Response res = await http
-          .get(Uri.parse(dotenv.env['API_URL']! + "tips" ?? ""), headers: {
+          .get(Uri.parse("${dotenv.env['API_URL']!}tips"), headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer ${authProvider.token}',
@@ -321,7 +321,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: isLoading
-                          ? Center(child: CircularProgressIndicator())
+                          ? const Center(child: CircularProgressIndicator())
                           : ListView.builder(
                               itemCount: tips['data']['total'],
                               scrollDirection: Axis.horizontal,

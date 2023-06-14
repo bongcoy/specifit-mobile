@@ -42,24 +42,24 @@ class WorkoutProgramItemCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Column(
                 children: [
                   Row(
-                    children: const [
+                    children: [
                       Icon(Icons.person, color: orangeColor),
                       Icon(Icons.thumb_up, color: orangeColor),
                       Text(typeProgram),
                     ],
                   ),
-                  const Divider(
+                  Divider(
                     height: 1,
                   ),
-                  const Text(titleProgram),
+                  Text(titleProgram),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
+                    children: [
                       Icon(Icons.watch_later_outlined, color: orangeColor),
                       Text("$daysProgram hari"),
                       Icon(Icons.star, color: orangeColor),

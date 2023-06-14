@@ -10,7 +10,7 @@ class RiwayatProfileScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),
@@ -18,7 +18,7 @@ class RiwayatProfileScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: Text(
+        title: const Text(
           'Riwayat Program',
           style: TextStyle(color: Colors.black),
         ),
@@ -26,7 +26,7 @@ class RiwayatProfileScreen extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.all(16),
+            margin: const EdgeInsets.all(16),
             height: 130,
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(8.0)),
@@ -39,8 +39,8 @@ class RiwayatProfileScreen extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(width: 8),
-                Expanded(
+                const SizedBox(width: 8),
+                const Expanded(
                   flex: 2,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
