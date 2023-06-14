@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:specifit/src/presentation/widgets/cards/workout_program_item_card.dart';
 
 import '../../themes.dart';
-import '../../widgets/buttons/filter_button.dart';
-import '../../widgets/search_box.dart';
 
 class WorkoutProgramAllScreen extends StatelessWidget {
   const WorkoutProgramAllScreen({Key? key}) : super(key: key);

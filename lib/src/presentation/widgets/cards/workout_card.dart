@@ -6,7 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../screens/workout/workout_detail_screen.dart';
 
 class WorkoutCard extends ConsumerWidget {
-  final String url = dotenv.env['API_URL']! + "workout/image/" ?? "";
+  final String url = "${dotenv.env['API_URL']!}workout/image/";
   final String title;
   final String imageUrl;
   final String desc;

@@ -160,68 +160,66 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ],
                 ),
               ),
-              Container(
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Card(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text("Masuk", style: TextStyle(fontSize: 20)),
-                            TextFormField(
-                              controller: _emailController,
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.email),
-                                hintText: 'email',
-                                hintStyle: const TextStyle(
-                                  color: Color.fromARGB(131, 0, 0, 0),
-                                ),
-                                fillColor: Colors.white,
-                                filled: true,
-                                errorText: _emailError,
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("Masuk", style: TextStyle(fontSize: 20)),
+                          TextFormField(
+                            controller: _emailController,
+                            decoration: InputDecoration(
+                              prefixIcon: const Icon(Icons.email),
+                              hintText: 'email',
+                              hintStyle: const TextStyle(
+                                color: Color.fromARGB(131, 0, 0, 0),
+                              ),
+                              fillColor: Colors.white,
+                              filled: true,
+                              errorText: _emailError,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          TextFormField(
+                            controller: _passwordController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              prefixIcon: const Icon(Icons.lock),
+                              hintText: 'password',
+                              hintStyle: const TextStyle(
+                                color: Color.fromARGB(148, 0, 0, 0),
+                              ),
+                              fillColor: Colors.white,
+                              filled: true,
+                              errorText: _passwordError,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: () => _login(
+                              context,
+                              ref,
+                              _emailController.text.trim(),
+                              _passwordController.text.trim(),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 247, 125, 11),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
                               ),
                             ),
-                            const SizedBox(height: 10),
-                            TextFormField(
-                              controller: _passwordController,
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                prefixIcon: const Icon(Icons.lock),
-                                hintText: 'password',
-                                hintStyle: const TextStyle(
-                                  color: Color.fromARGB(148, 0, 0, 0),
-                                ),
-                                fillColor: Colors.white,
-                                filled: true,
-                                errorText: _passwordError,
-                              ),
+                            child: const Text(
+                              'Login',
+                              style: TextStyle(color: Colors.white),
                             ),
-                            const SizedBox(height: 10),
-                            ElevatedButton(
-                              onPressed: () => _login(
-                                context,
-                                ref,
-                                _emailController.text.trim(),
-                                _passwordController.text.trim(),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    const Color.fromARGB(255, 247, 125, 11),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                              ),
-                              child: const Text(
-                                'Login',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

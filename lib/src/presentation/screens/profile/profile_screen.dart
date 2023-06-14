@@ -30,7 +30,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
     final authProvider = ref.read(userAuthProvider);
     try {
       http.Response res = await http
-          .get(Uri.parse(dotenv.env['API_URL']! + "user" ?? ""), headers: {
+          .get(Uri.parse("${dotenv.env['API_URL']!}user"), headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer ${authProvider.token}',
@@ -86,10 +86,10 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             isLoading
-                                ? Center(child: CircularProgressIndicator())
+                                ? const Center(child: CircularProgressIndicator())
                                 : Text(
                                     profile['data']['name'],
-                                    style: TextStyle(fontSize: 18),
+                                    style: const TextStyle(fontSize: 18),
                                   ),
                             // Add more information or widgets related to the profile
                           ],
@@ -134,7 +134,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (ctx) => EditProfileScreen(),
+                          builder: (ctx) => const EditProfileScreen(),
                         ),
                       );
                     },

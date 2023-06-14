@@ -94,7 +94,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final authProvider = ref.read(userAuthProvider);
     try {
       http.Response res = await http
-          .get(Uri.parse(dotenv.env['API_URL']! + "tips" ?? ""), headers: {
+          .get(Uri.parse("${dotenv.env['API_URL']!}tips"), headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer ${authProvider.token}',
@@ -202,10 +202,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    SingleChildScrollView(
+                    const SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        children: const [
+                        children: [
                           CategoryButton(
                             icon: Icons.accessibility,
                             label: "Legs",

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:specifit/src/presentation/themes.dart';
-import 'package:specifit/src/presentation/widgets/buttons/filter_button.dart';
 import 'package:specifit/src/presentation/widgets/cards/workout_card.dart';
-import 'package:specifit/src/presentation/widgets/search_box.dart';
 
 class WorkoutAllScreen extends StatelessWidget {
   final dynamic workouts;
