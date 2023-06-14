@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:specifit/src/presentation/themes.dart';
+import 'package:specifit/src/presentation/widgets/box/expandable_text.dart';
 import 'package:specifit/src/presentation/widgets/program_tab_bar.dart';
 
 class WorkoutProgramDetailScreen extends StatelessWidget {
@@ -42,11 +43,7 @@ class WorkoutProgramDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 8,
                     ),
-                    Text(
-                      descProgram,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    ExpandableText(text: descProgram),
                   ],
                 ),
               ),
